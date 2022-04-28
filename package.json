@@ -8,6 +8,7 @@
   "scripts": {
     "clean": "rm -rf cache/ artifacts/",
     "submodules": "git submodule init",
+    "forge-verify": "hardhat run ./scripts/verify.js --network mumbai",
     "compile": "hardhat compile",
     "hh": "hardhat",
     "docs": "hardhat deploy-markdown-export --name 'V4 Testnet' --npm-package-name @pooltogether/v4-testnet --github-base-url 'https://github.com/pooltogether/v4-testnet/tree/master' --output-filepath testnet.md",
