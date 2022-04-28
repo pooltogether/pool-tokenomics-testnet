@@ -1,0 +1,3 @@
+[submodule "submodules/pool-tokenomics-prototype"]
+	path = submodules/pool-tokenomics-prototype
+	url = git@github.com:pooltogether/pool-tokenomics-prototype.git
