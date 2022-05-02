@@ -21,6 +21,7 @@
     "stake": "hardhat run ./scripts/stake.js --network localhost",
     "deposit": "hardhat run ./scripts/deposit.js --network localhost",
     "yield": "hardhat run ./scripts/yield.js --network localhost",
+    "generate-contract-list": "node ./scripts/generateContractList.js",
     "prepare-deploy": "yarn clean && yarn compile",
     "prepack": "yarn generate",
     "reinstall": "rm -rf node_modules/ && yarn cache clean && yarn",
