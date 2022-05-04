@@ -164,14 +164,30 @@ export default async function deployToMumbai(hardhat: HardhatRuntimeEnvironment)
   // ===================================================
   // Configure Contracts
   // ===================================================
+  console.log(dim("Configuring contracts..."))
 
+  
   const prizePool1 = await ethers.getContract('PrizePool1')
-  await (await prizePool1.setTicket(ticket1Result.address)).wait(1)
-  await (await prizePool1.setPrizeStrategy(prizePoolLiquidatorResult.address)).wait(1)
+  console.log(`I am ${prizePool1.signer.address}`)
+  if ((await prizePool1.getTicket()) != ticket1Result.address) {
+    console.log(dim("Setting ticket on pool 1..."))
+    await (await prizePool1.setTicket(ticket1Result.address)).wait(1)
+  }
+  if ((await prizePool1.getPrizeStrategy()) != prizePoolLiquidatorResult.address) {
+    console.log(dim("Setting prize strat on pool 1..."))
+    await (await prizePool1.setPrizeStrategy(prizePoolLiquidatorResult.address)).wait(1)
+  }
+
   
   const prizePool2 = await ethers.getContract('PrizePool2')
-  await (await prizePool2.setTicket(ticket2Result.address)).wait(1)
-  await (await prizePool2.setPrizeStrategy(prizePoolLiquidatorResult.address)).wait(1)
+  if ((await prizePool2.getTicket()) != ticket2Result.address) {
+    console.log(dim("Setting ticket on pool 2..."))
+    await (await prizePool2.setTicket(ticket2Result.address)).wait(1)
+  }
+  if ((await prizePool2.getPrizeStrategy()) != prizePoolLiquidatorResult.address) {
+    console.log(dim("Setting prize strat on pool 2..."))
+    await (await prizePool2.setPrizeStrategy(prizePoolLiquidatorResult.address)).wait(1)
+  }
 
   await setManager('DrawBuffer', null, drawBeaconResult.address);
 
