@@ -166,9 +166,7 @@ export default async function deployToMumbai(hardhat: HardhatRuntimeEnvironment)
   // ===================================================
   console.log(dim("Configuring contracts..."))
 
-  
   const prizePool1 = await ethers.getContract('PrizePool1')
-  console.log(`I am ${prizePool1.signer.address}`)
   if ((await prizePool1.getTicket()) != ticket1Result.address) {
     console.log(dim("Setting ticket on pool 1..."))
     await (await prizePool1.setTicket(ticket1Result.address)).wait(1)
@@ -178,7 +176,6 @@ export default async function deployToMumbai(hardhat: HardhatRuntimeEnvironment)
     await (await prizePool1.setPrizeStrategy(prizePoolLiquidatorResult.address)).wait(1)
   }
 
-  
   const prizePool2 = await ethers.getContract('PrizePool2')
   if ((await prizePool2.getTicket()) != ticket2Result.address) {
     console.log(dim("Setting ticket on pool 2..."))
@@ -221,11 +218,15 @@ export default async function deployToMumbai(hardhat: HardhatRuntimeEnvironment)
   }
 
   const mockYieldSource = await ethers.getContract('MockYieldSource')
-  const yieldTx = await mockYieldSource.setRatePerSecond(ethers.utils.parseEther('0.01').div(60)) // 1% every minute
-  await yieldTx.wait(1)
+  if ((await mockYieldSource.ratePerSecond()).eq('0')) {
+    console.log(dim("Setting yield rate..."))
+    const yieldTx = await mockYieldSource.setRatePerSecond(ethers.utils.parseEther('0.01').div(60)) // 1% every minute
+    await yieldTx.wait(1)
+  }
 
   const pool = await ethers.getContract('Pool')
   if ((await pool.balanceOf(deployer)).eq('0')) {
+    console.log(dim("Minting POOL to deployer..."))
     const mintTx = await pool.mint(deployer, ethers.utils.parseEther('10000000'))
     await mintTx.wait(1)
   }
