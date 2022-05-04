@@ -1,5 +1,11 @@
-# PoolTogether V4 Testnet
-The V4 testnet deployed contracts and essential hardhat tasks.
+# PoolTogether Tokenomics Testnet
+
+This is a testnet for the new PoolTogether POOL tokenomics.
+
+This testnet requires two OpenZeppelin Defender tasks to run properly:
+
+- [Draw Beacon autotask](https://github.com/pooltogether/v4-testnet-beacon-autotask)
+- [Tokenomics Arb Bot autotask](https://github.com/pooltogether/tokenomics-testnet-arb-autotask)
 
 # Getting Started
 Install `direnv` module.
