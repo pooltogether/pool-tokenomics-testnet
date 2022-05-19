@@ -81,7 +81,7 @@ if (mnemonic) {
 
   networks.mumbai = {
     chainId: 80001,
-    url: 'https://rpc-mumbai.maticvigil.com',
+    url: process.env.ALCHEMY_MUMBAI_RPC_URL,
     accounts: {
       mnemonic,
     },
