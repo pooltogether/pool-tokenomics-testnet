@@ -6,22 +6,17 @@ import {
   RNG_TIMEOUT_SECONDS,
   POOL_USDC_MARKET_RATE,
   SALES_RATE_PER_SECOND,
-  TOKEN_DECIMALS
+  TOKEN_DECIMALS,
 } from '../src/constants';
 import { deployAndLog } from '../src/deployAndLog';
 import { setManager } from '../src/setManager';
 import { ethers } from 'hardhat';
 
-const GaugeControllerJson = require('../submodules/pool-tokenomics-prototype/out/GaugeController.sol/GaugeController.json')
-const DrawCalculatorJson = require('../submodules/pool-tokenomics-prototype/out/DrawCalculator.sol/DrawCalculator.json')
-const PrizeDistributorJson = require('../submodules/pool-tokenomics-prototype/out/PrizeDistributor.sol/PrizeDistributor.json')
-const PrizePoolLiquidatorJson = require('../submodules/pool-tokenomics-prototype/out/PrizePoolLiquidator.sol/PrizePoolLiquidator.json')
-
 export default async function deployToMumbai(hardhat: HardhatRuntimeEnvironment) {
   const { getNamedAccounts } = hardhat;
 
   const { deployer, defenderRelayer } = await getNamedAccounts();
-  
+
   // ===================================================
   // Deploy Contracts
   // ===================================================
@@ -70,8 +65,8 @@ export default async function deployToMumbai(hardhat: HardhatRuntimeEnvironment)
     from: deployer,
     contract: '@pooltogether/v4-core/contracts/test/ERC20Mintable.sol:ERC20Mintable',
     args: ['POOL Token', 'POOL'],
-    skipIfAlreadyDeployed: true
-  })
+    skipIfAlreadyDeployed: true,
+  });
 
   const drawBufferResult = await deployAndLog('DrawBuffer', {
     from: deployer,
@@ -98,165 +93,136 @@ export default async function deployToMumbai(hardhat: HardhatRuntimeEnvironment)
       calculatedBeaconPeriodSeconds,
       RNG_TIMEOUT_SECONDS,
     ],
-    skipIfAlreadyDeployed: true
+    skipIfAlreadyDeployed: true,
   });
 
   const gaugeControllerResult = await deployAndLog('GaugeController', {
     from: deployer,
-    contract: {
-      abi: GaugeControllerJson.abi,
-      bytecode: GaugeControllerJson.bytecode
-    },
-    args: [
-      poolResult.address,
-      deployer
-    ],
+    args: [poolResult.address, deployer],
     skipIfAlreadyDeployed: true,
   });
 
-  const drawCalculatorResult = await deployAndLog('DrawCalculator', {
+  const prizeConfigHistoryResult = await deployAndLog('PrizeConfigHistory', {
     from: deployer,
-    contract: {
-      abi: DrawCalculatorJson.abi,
-      bytecode: DrawCalculatorJson.bytecode
-    },
+    args: [deployer],
+    skipIfAlreadyDeployed: true,
+  });
+
+  const drawCalculatorResult = await deployAndLog('DrawCalculatorV3', {
+    from: deployer,
     args: [
       gaugeControllerResult.address,
       drawBufferResult.address,
-      deployer
+      prizeConfigHistoryResult.address,
+      deployer,
     ],
     skipIfAlreadyDeployed: true,
   });
 
-  const prizeDistributorResult = await deployAndLog('PrizeDistributor', {
+  const vaultResult = await deployAndLog('Vault', {
     from: deployer,
-    contract: {
-      abi: PrizeDistributorJson.abi,
-      bytecode: PrizeDistributorJson.bytecode
-    },
-    args: [deployer, poolResult.address, drawCalculatorResult.address],
+    args: [deployer],
+    skipIfAlreadyDeployed: true,
+  });
+
+  const prizeDistributorResult = await deployAndLog('PrizeDistributorV2', {
+    from: deployer,
+    args: [deployer, poolResult.address, drawCalculatorResult.address, vaultResult.address],
     skipIfAlreadyDeployed: true,
   });
 
   const prizePoolLiquidatorResult = await deployAndLog('PrizePoolLiquidator', {
     from: deployer,
-    contract: {
-      abi: PrizePoolLiquidatorJson.abi,
-      bytecode: PrizePoolLiquidatorJson.bytecode
-    },
-    skipIfAlreadyDeployed: true,
-  });
-
-  await deployAndLog('EIP2612PermitAndDeposit', { from: deployer, skipIfAlreadyDeployed: true });
-
-  await deployAndLog('TwabRewards', {
-    from: deployer,
-    args: [ticket1Result.address],
-    skipIfAlreadyDeployed: true,
-  });
-
-  await deployAndLog('TWABDelegator', {
-    from: deployer,
-    args: ['PoolTogether Staked aUSDC Ticket', 'stkPTaUSDC', ticket1Result.address],
     skipIfAlreadyDeployed: true,
   });
 
   // ===================================================
   // Configure Contracts
   // ===================================================
-  console.log(dim("Configuring contracts..."))
+  console.log(dim('Configuring contracts...'));
 
-  const prizePool1 = await ethers.getContract('PrizePool1')
+  const prizePool1 = await ethers.getContract('PrizePool1');
   if ((await prizePool1.getTicket()) != ticket1Result.address) {
-    console.log(dim("Setting ticket on pool 1..."))
-    await (await prizePool1.setTicket(ticket1Result.address)).wait(1)
+    console.log(dim('Setting ticket on pool 1...'));
+    await (await prizePool1.setTicket(ticket1Result.address)).wait(1);
   }
   if ((await prizePool1.getPrizeStrategy()) != prizePoolLiquidatorResult.address) {
-    console.log(dim("Setting prize strat on pool 1..."))
-    await (await prizePool1.setPrizeStrategy(prizePoolLiquidatorResult.address)).wait(1)
+    console.log(dim('Setting prize strat on pool 1...'));
+    await (await prizePool1.setPrizeStrategy(prizePoolLiquidatorResult.address)).wait(1);
   }
 
-  const prizePool2 = await ethers.getContract('PrizePool2')
+  const prizePool2 = await ethers.getContract('PrizePool2');
   if ((await prizePool2.getTicket()) != ticket2Result.address) {
-    console.log(dim("Setting ticket on pool 2..."))
-    await (await prizePool2.setTicket(ticket2Result.address)).wait(1)
+    console.log(dim('Setting ticket on pool 2...'));
+    await (await prizePool2.setTicket(ticket2Result.address)).wait(1);
   }
   if ((await prizePool2.getPrizeStrategy()) != prizePoolLiquidatorResult.address) {
-    console.log(dim("Setting prize strat on pool 2..."))
-    await (await prizePool2.setPrizeStrategy(prizePoolLiquidatorResult.address)).wait(1)
+    console.log(dim('Setting prize strat on pool 2...'));
+    await (await prizePool2.setPrizeStrategy(prizePoolLiquidatorResult.address)).wait(1);
   }
 
   await setManager('DrawBuffer', null, drawBeaconResult.address);
 
-  console.log(dim(`Checking liquidation stream...`))
-  const prizePoolLiquidator = await ethers.getContract('PrizePoolLiquidator')
-  const sc = await prizePoolLiquidator.getStreamController('0')
-  if (sc.exchangeRate == 0) {
-    console.log(dim(`Adding stream for prize pool 1....`))
-    await (await prizePoolLiquidator.addStream(
-      prizePool1Result.address,
-      prizeDistributorResult.address,
-      ticket1Result.address,
-      poolResult.address,
-      ethers.utils.parseEther(POOL_USDC_MARKET_RATE),
-      SALES_RATE_PER_SECOND,
-      ethers.utils.parseEther('0.01').div(60), // 1% every minute
-      ethers.utils.parseEther('0.05') // 5% slippage
-    )).wait(1)
-
-    console.log(dim(`Adding stream for prize pool 2....`))
-    await (await prizePoolLiquidator.addStream(
-      prizePool2Result.address,
-      prizeDistributorResult.address,
-      ticket2Result.address,
-      poolResult.address,
-      ethers.utils.parseEther(POOL_USDC_MARKET_RATE),
-      SALES_RATE_PER_SECOND,
-      ethers.utils.parseEther('0.01').div(60), // 1% every minute
-      ethers.utils.parseEther('0.05') // 5% slippage
-    )).wait(1)
-  }
-
-  const mockYieldSource = await ethers.getContract('MockYieldSource')
+  const mockYieldSource = await ethers.getContract('MockYieldSource');
   if ((await mockYieldSource.ratePerSecond()).eq('0')) {
-    console.log(dim("Setting yield rate..."))
-    const yieldTx = await mockYieldSource.setRatePerSecond(ethers.utils.parseEther('0.01').div(60)) // 1% every minute
-    await yieldTx.wait(1)
+    console.log(dim('Setting yield rate...'));
+    const yieldTx = await mockYieldSource.setRatePerSecond(ethers.utils.parseEther('0.01').div(60)); // 1% every minute
+    await yieldTx.wait(1);
   }
 
-  const pool = await ethers.getContract('Pool')
+  const pool = await ethers.getContract('Pool');
   if ((await pool.balanceOf(deployer)).eq('0')) {
-    console.log(dim("Minting POOL to deployer..."))
-    const mintTx = await pool.mint(deployer, ethers.utils.parseEther('10000000'))
-    await mintTx.wait(1)
+    console.log(dim('Minting POOL to deployer...'));
+    const mintTx = await pool.mint(deployer, ethers.utils.parseEther('10000000'));
+    await mintTx.wait(1);
   }
 
-  const gaugeController = await ethers.getContract('GaugeController')
+  const gaugeController = await ethers.getContract('GaugeController');
   if (!(await gaugeController.isGauge(ticket1Result.address))) {
-    console.log(dim(`Adding ticket1 as gauge...`))
-    await (await gaugeController.addGauge(ticket1Result.address)).wait(1)
+    console.log(dim(`Adding ticket1 as gauge...`));
+    await (await gaugeController.addGauge(ticket1Result.address)).wait(1);
 
-    console.log(dim(`Adding ticket2 as gauge...`))
-    await (await gaugeController.addGauge(ticket2Result.address)).wait(1)
+    console.log(dim(`Adding ticket2 as gauge...`));
+    await (await gaugeController.addGauge(ticket2Result.address)).wait(1);
 
-    console.log(green(`Done adding gauges!`))
+    console.log(green(`Done adding gauges!`));
   }
 
-  const drawCalculator = await ethers.getContract('DrawCalculator')
-  if (await drawCalculator.count() == 0) {
-    console.log(yellow(`Pushing first prize tier on....`))
-    const pushTx = await drawCalculator.push({
+  const prizeConfigHistory = await ethers.getContract('PrizeConfigHistory');
+
+  if ((await prizeConfigHistory.count()) == 0) {
+    console.log(yellow(`Pushing first prize tier on....`));
+
+    const pushTx = await prizeConfigHistory.push({
       bitRangeSize: 2,
       matchCardinality: 12,
       maxPicksPerUser: 2,
       drawId: 1,
       expiryDuration: calculatedBeaconPeriodSeconds * 4, // expires in four periods
       endTimestampOffset: 0,
-      poolStakeTotal: (await pool.totalSupply()),
+      poolStakeCeiling: await pool.totalSupply(),
       prize: ethers.utils.parseEther('10.0'),
-      tiers: ['141787658', '85072595', '136116152', '136116152', '108892921', '217785843', '174228675', 0, 0, 0, 0, 0, 0, 0, 0, 0]
-    })
-    await pushTx.wait(1)
-    console.log(green(`Done!`))
+      tiers: [
+        '141787658',
+        '85072595',
+        '136116152',
+        '136116152',
+        '108892921',
+        '217785843',
+        '174228675',
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+      ],
+    });
+
+    await pushTx.wait(1);
+    console.log(green(`Done!`));
   }
 }
