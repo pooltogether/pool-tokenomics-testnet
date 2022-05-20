@@ -15,7 +15,8 @@ export default async function deployToMumbai(hardhat: HardhatRuntimeEnvironment)
   const { getNamedAccounts } = hardhat;
 
   const { deployer, defenderRelayer } = await getNamedAccounts();
-  const { utils } = ethers;
+  const { constants, utils } = ethers;
+  const { AddressZero } = constants;
   const { parseUnits } = utils;
 
   // ===================================================
@@ -190,6 +191,12 @@ export default async function deployToMumbai(hardhat: HardhatRuntimeEnvironment)
   }
 
   const gaugeController = await ethers.getContract('GaugeController');
+
+  if (await gaugeController.callStatic.gaugeReward() === AddressZero) {
+    console.log(dim('Set GaugeReward contract on GaugeController...'));
+    await gaugeController.setGaugeReward(gaugeRewardResult.address);
+  }
+
   if (!(await gaugeController.isGauge(ticket1Result.address))) {
     console.log(dim(`Adding ticket1 as gauge...`));
     await (await gaugeController.addGauge(ticket1Result.address)).wait(1);
