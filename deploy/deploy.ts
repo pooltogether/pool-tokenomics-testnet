@@ -29,14 +29,14 @@ export default async function deployToMumbai(hardhat: HardhatRuntimeEnvironment)
 
   // Prize Pool 1
 
-  const prizePool1Result = await deployAndLog('PrizePool1', {
+  const prizePool1Result = await deployAndLog('PrizePool-1', {
     contract: 'YieldSourcePrizePool',
     from: deployer,
     args: [deployer, mockYieldSourceResult.address],
     skipIfAlreadyDeployed: true,
   });
 
-  const ticket1Result = await deployAndLog('Ticket1', {
+  const ticket1Result = await deployAndLog('Ticket-1', {
     contract: 'Ticket',
     from: deployer,
     args: ['Ticket', 'TICK', TOKEN_DECIMALS, prizePool1Result.address],
@@ -45,14 +45,14 @@ export default async function deployToMumbai(hardhat: HardhatRuntimeEnvironment)
 
   // Prize Pool 2
 
-  const prizePool2Result = await deployAndLog('PrizePool2', {
+  const prizePool2Result = await deployAndLog('PrizePool-2', {
     contract: 'YieldSourcePrizePool',
     from: deployer,
     args: [deployer, mockYieldSourceResult.address],
     skipIfAlreadyDeployed: true,
   });
 
-  const ticket2Result = await deployAndLog('Ticket2', {
+  const ticket2Result = await deployAndLog('Ticket-2', {
     contract: 'Ticket',
     from: deployer,
     args: ['Ticket', 'TICK', TOKEN_DECIMALS, prizePool2Result.address],
@@ -141,7 +141,7 @@ export default async function deployToMumbai(hardhat: HardhatRuntimeEnvironment)
   // ===================================================
   console.log(dim('Configuring contracts...'));
 
-  const prizePool1 = await ethers.getContract('PrizePool1');
+  const prizePool1 = await ethers.getContract('PrizePool-1');
   if ((await prizePool1.getTicket()) != ticket1Result.address) {
     console.log(dim('Setting ticket on pool 1...'));
     await (await prizePool1.setTicket(ticket1Result.address)).wait(1);
@@ -151,7 +151,7 @@ export default async function deployToMumbai(hardhat: HardhatRuntimeEnvironment)
     await (await prizePool1.setPrizeStrategy(prizePoolLiquidatorResult.address)).wait(1);
   }
 
-  const prizePool2 = await ethers.getContract('PrizePool2');
+  const prizePool2 = await ethers.getContract('PrizePool-2');
   if ((await prizePool2.getTicket()) != ticket2Result.address) {
     console.log(dim('Setting ticket on pool 2...'));
     await (await prizePool2.setTicket(ticket2Result.address)).wait(1);
