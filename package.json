@@ -8,6 +8,7 @@
   "scripts": {
     "prepare": "husky install",
     "clean": "rm -rf cache/ artifacts/",
+    "verify:rinkeby": "hardhat run ./scripts/verify.ts --network rinkeby",
     "verify:mumbai": "hardhat --config hardhat.config.polygon.ts run ./scripts/verify.ts --network mumbai",
     "compile": "hardhat compile",
     "hh": "hardhat",
@@ -28,6 +29,7 @@
     "format": "prettier --config .prettierrc --write \"**/*.*.{ts,js}\"",
     "format:file": "prettier --config .prettierrc --write",
     "deploy": "hardhat deploy --network",
+    "deploy:rinkeby": "hardhat deploy --network rinkeby",
     "deploy:mumbai": "hardhat deploy --network mumbai",
     "deploy:dry-run": "hardhat node --network hardhat"
   },
