@@ -1,4 +1,3 @@
-// @ts-nocheck
 import { dim, yellow, green } from 'chalk';
 import { HardhatRuntimeEnvironment } from 'hardhat/types';
 import {
@@ -16,6 +15,8 @@ export default async function deployToMumbai(hardhat: HardhatRuntimeEnvironment)
   const { getNamedAccounts } = hardhat;
 
   const { deployer, defenderRelayer } = await getNamedAccounts();
+  const { utils } = ethers;
+  const { parseUnits } = utils;
 
   // ===================================================
   // Deploy Contracts
@@ -133,6 +134,17 @@ export default async function deployToMumbai(hardhat: HardhatRuntimeEnvironment)
 
   const prizePoolLiquidatorResult = await deployAndLog('PrizePoolLiquidator', {
     from: deployer,
+    skipIfAlreadyDeployed: true,
+  });
+
+  const gaugeRewardResult = await deployAndLog('GaugeReward', {
+    from: deployer,
+    args: [
+      gaugeControllerResult.address,
+      vaultResult.address,
+      prizePoolLiquidatorResult.address,
+      parseUnits('0.1', 9), // 10%
+    ],
     skipIfAlreadyDeployed: true,
   });
 
