@@ -58,7 +58,7 @@ async function run() {
         './node_modules/@pooltogether/',
       )[0];
 
-      console.log("contractName", contractName);
+      console.log('contractName', contractName);
 
       if (!contractDirPath) {
         error(`There is no matching contract for ${contractName}. This is likely because the deployment contract name is different from the Solidity contract title.
