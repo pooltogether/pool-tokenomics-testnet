@@ -17,6 +17,8 @@ export const external = {
 };
 export const dependencyCompiler = {
   paths: [
+    // V4 Core
+    '@pooltogether/v4-core/contracts/test/ERC20Mintable.sol',
     // Timelock
     '@pooltogether/v4-timelocks/contracts/L1TimelockTrigger.sol',
     '@pooltogether/v4-timelocks/contracts/L2TimelockTrigger.sol',
