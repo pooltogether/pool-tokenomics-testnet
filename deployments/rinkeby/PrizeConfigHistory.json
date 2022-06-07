@@ -1,0 +1,1100 @@
+{
+  "address": "0x786e959A49d0484D85912A4e8fD3A0b6eaBdaAe0",
+  "abi": [
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "_owner",
+          "type": "address"
+        }
+      ],
+      "stateMutability": "nonpayable",
+      "type": "constructor"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "previousManager",
+          "type": "address"
+        },
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "newManager",
+          "type": "address"
+        }
+      ],
+      "name": "ManagerTransferred",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "pendingOwner",
+          "type": "address"
+        }
+      ],
+      "name": "OwnershipOffered",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "previousOwner",
+          "type": "address"
+        },
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "newOwner",
+          "type": "address"
+        }
+      ],
+      "name": "OwnershipTransferred",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "internalType": "uint32",
+          "name": "drawId",
+          "type": "uint32"
+        },
+        {
+          "components": [
+            {
+              "internalType": "uint8",
+              "name": "bitRangeSize",
+              "type": "uint8"
+            },
+            {
+              "internalType": "uint8",
+              "name": "matchCardinality",
+              "type": "uint8"
+            },
+            {
+              "internalType": "uint16",
+              "name": "maxPicksPerUser",
+              "type": "uint16"
+            },
+            {
+              "internalType": "uint32",
+              "name": "drawId",
+              "type": "uint32"
+            },
+            {
+              "internalType": "uint32",
+              "name": "expiryDuration",
+              "type": "uint32"
+            },
+            {
+              "internalType": "uint32",
+              "name": "endTimestampOffset",
+              "type": "uint32"
+            },
+            {
+              "internalType": "uint128",
+              "name": "poolStakeCeiling",
+              "type": "uint128"
+            },
+            {
+              "internalType": "uint256",
+              "name": "prize",
+              "type": "uint256"
+            },
+            {
+              "internalType": "uint32[16]",
+              "name": "tiers",
+              "type": "uint32[16]"
+            }
+          ],
+          "indexed": false,
+          "internalType": "struct IPrizeConfigHistory.PrizeConfig",
+          "name": "prizeConfig",
+          "type": "tuple"
+        }
+      ],
+      "name": "PrizeConfigPushed",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "internalType": "uint32",
+          "name": "drawId",
+          "type": "uint32"
+        },
+        {
+          "components": [
+            {
+              "internalType": "uint8",
+              "name": "bitRangeSize",
+              "type": "uint8"
+            },
+            {
+              "internalType": "uint8",
+              "name": "matchCardinality",
+              "type": "uint8"
+            },
+            {
+              "internalType": "uint16",
+              "name": "maxPicksPerUser",
+              "type": "uint16"
+            },
+            {
+              "internalType": "uint32",
+              "name": "drawId",
+              "type": "uint32"
+            },
+            {
+              "internalType": "uint32",
+              "name": "expiryDuration",
+              "type": "uint32"
+            },
+            {
+              "internalType": "uint32",
+              "name": "endTimestampOffset",
+              "type": "uint32"
+            },
+            {
+              "internalType": "uint128",
+              "name": "poolStakeCeiling",
+              "type": "uint128"
+            },
+            {
+              "internalType": "uint256",
+              "name": "prize",
+              "type": "uint256"
+            },
+            {
+              "internalType": "uint32[16]",
+              "name": "tiers",
+              "type": "uint32[16]"
+            }
+          ],
+          "indexed": false,
+          "internalType": "struct IPrizeConfigHistory.PrizeConfig",
+          "name": "prizeConfig",
+          "type": "tuple"
+        }
+      ],
+      "name": "PrizeConfigSet",
+      "type": "event"
+    },
+    {
+      "inputs": [],
+      "name": "claimOwnership",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "count",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "getNewestDrawId",
+      "outputs": [
+        {
+          "internalType": "uint32",
+          "name": "",
+          "type": "uint32"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "getOldestDrawId",
+      "outputs": [
+        {
+          "internalType": "uint32",
+          "name": "",
+          "type": "uint32"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint32",
+          "name": "_drawId",
+          "type": "uint32"
+        }
+      ],
+      "name": "getPrizeConfig",
+      "outputs": [
+        {
+          "components": [
+            {
+              "internalType": "uint8",
+              "name": "bitRangeSize",
+              "type": "uint8"
+            },
+            {
+              "internalType": "uint8",
+              "name": "matchCardinality",
+              "type": "uint8"
+            },
+            {
+              "internalType": "uint16",
+              "name": "maxPicksPerUser",
+              "type": "uint16"
+            },
+            {
+              "internalType": "uint32",
+              "name": "drawId",
+              "type": "uint32"
+            },
+            {
+              "internalType": "uint32",
+              "name": "expiryDuration",
+              "type": "uint32"
+            },
+            {
+              "internalType": "uint32",
+              "name": "endTimestampOffset",
+              "type": "uint32"
+            },
+            {
+              "internalType": "uint128",
+              "name": "poolStakeCeiling",
+              "type": "uint128"
+            },
+            {
+              "internalType": "uint256",
+              "name": "prize",
+              "type": "uint256"
+            },
+            {
+              "internalType": "uint32[16]",
+              "name": "tiers",
+              "type": "uint32[16]"
+            }
+          ],
+          "internalType": "struct IPrizeConfigHistory.PrizeConfig",
+          "name": "prizeConfig",
+          "type": "tuple"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "_index",
+          "type": "uint256"
+        }
+      ],
+      "name": "getPrizeConfigAtIndex",
+      "outputs": [
+        {
+          "components": [
+            {
+              "internalType": "uint8",
+              "name": "bitRangeSize",
+              "type": "uint8"
+            },
+            {
+              "internalType": "uint8",
+              "name": "matchCardinality",
+              "type": "uint8"
+            },
+            {
+              "internalType": "uint16",
+              "name": "maxPicksPerUser",
+              "type": "uint16"
+            },
+            {
+              "internalType": "uint32",
+              "name": "drawId",
+              "type": "uint32"
+            },
+            {
+              "internalType": "uint32",
+              "name": "expiryDuration",
+              "type": "uint32"
+            },
+            {
+              "internalType": "uint32",
+              "name": "endTimestampOffset",
+              "type": "uint32"
+            },
+            {
+              "internalType": "uint128",
+              "name": "poolStakeCeiling",
+              "type": "uint128"
+            },
+            {
+              "internalType": "uint256",
+              "name": "prize",
+              "type": "uint256"
+            },
+            {
+              "internalType": "uint32[16]",
+              "name": "tiers",
+              "type": "uint32[16]"
+            }
+          ],
+          "internalType": "struct IPrizeConfigHistory.PrizeConfig",
+          "name": "prizeConfig",
+          "type": "tuple"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint32[]",
+          "name": "_drawIds",
+          "type": "uint32[]"
+        }
+      ],
+      "name": "getPrizeConfigList",
+      "outputs": [
+        {
+          "components": [
+            {
+              "internalType": "uint8",
+              "name": "bitRangeSize",
+              "type": "uint8"
+            },
+            {
+              "internalType": "uint8",
+              "name": "matchCardinality",
+              "type": "uint8"
+            },
+            {
+              "internalType": "uint16",
+              "name": "maxPicksPerUser",
+              "type": "uint16"
+            },
+            {
+              "internalType": "uint32",
+              "name": "drawId",
+              "type": "uint32"
+            },
+            {
+              "internalType": "uint32",
+              "name": "expiryDuration",
+              "type": "uint32"
+            },
+            {
+              "internalType": "uint32",
+              "name": "endTimestampOffset",
+              "type": "uint32"
+            },
+            {
+              "internalType": "uint128",
+              "name": "poolStakeCeiling",
+              "type": "uint128"
+            },
+            {
+              "internalType": "uint256",
+              "name": "prize",
+              "type": "uint256"
+            },
+            {
+              "internalType": "uint32[16]",
+              "name": "tiers",
+              "type": "uint32[16]"
+            }
+          ],
+          "internalType": "struct IPrizeConfigHistory.PrizeConfig[]",
+          "name": "prizeConfigList",
+          "type": "tuple[]"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "manager",
+      "outputs": [
+        {
+          "internalType": "address",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "owner",
+      "outputs": [
+        {
+          "internalType": "address",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "pendingOwner",
+      "outputs": [
+        {
+          "internalType": "address",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "components": [
+            {
+              "internalType": "uint8",
+              "name": "bitRangeSize",
+              "type": "uint8"
+            },
+            {
+              "internalType": "uint8",
+              "name": "matchCardinality",
+              "type": "uint8"
+            },
+            {
+              "internalType": "uint16",
+              "name": "maxPicksPerUser",
+              "type": "uint16"
+            },
+            {
+              "internalType": "uint32",
+              "name": "drawId",
+              "type": "uint32"
+            },
+            {
+              "internalType": "uint32",
+              "name": "expiryDuration",
+              "type": "uint32"
+            },
+            {
+              "internalType": "uint32",
+              "name": "endTimestampOffset",
+              "type": "uint32"
+            },
+            {
+              "internalType": "uint128",
+              "name": "poolStakeCeiling",
+              "type": "uint128"
+            },
+            {
+              "internalType": "uint256",
+              "name": "prize",
+              "type": "uint256"
+            },
+            {
+              "internalType": "uint32[16]",
+              "name": "tiers",
+              "type": "uint32[16]"
+            }
+          ],
+          "internalType": "struct IPrizeConfigHistory.PrizeConfig",
+          "name": "_newPrizeConfig",
+          "type": "tuple"
+        }
+      ],
+      "name": "popAndPush",
+      "outputs": [
+        {
+          "internalType": "uint32",
+          "name": "",
+          "type": "uint32"
+        }
+      ],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "components": [
+            {
+              "internalType": "uint8",
+              "name": "bitRangeSize",
+              "type": "uint8"
+            },
+            {
+              "internalType": "uint8",
+              "name": "matchCardinality",
+              "type": "uint8"
+            },
+            {
+              "internalType": "uint16",
+              "name": "maxPicksPerUser",
+              "type": "uint16"
+            },
+            {
+              "internalType": "uint32",
+              "name": "drawId",
+              "type": "uint32"
+            },
+            {
+              "internalType": "uint32",
+              "name": "expiryDuration",
+              "type": "uint32"
+            },
+            {
+              "internalType": "uint32",
+              "name": "endTimestampOffset",
+              "type": "uint32"
+            },
+            {
+              "internalType": "uint128",
+              "name": "poolStakeCeiling",
+              "type": "uint128"
+            },
+            {
+              "internalType": "uint256",
+              "name": "prize",
+              "type": "uint256"
+            },
+            {
+              "internalType": "uint32[16]",
+              "name": "tiers",
+              "type": "uint32[16]"
+            }
+          ],
+          "internalType": "struct IPrizeConfigHistory.PrizeConfig",
+          "name": "_nextPrizeConfig",
+          "type": "tuple"
+        }
+      ],
+      "name": "push",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "renounceOwnership",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "components": [
+            {
+              "internalType": "uint8",
+              "name": "bitRangeSize",
+              "type": "uint8"
+            },
+            {
+              "internalType": "uint8",
+              "name": "matchCardinality",
+              "type": "uint8"
+            },
+            {
+              "internalType": "uint16",
+              "name": "maxPicksPerUser",
+              "type": "uint16"
+            },
+            {
+              "internalType": "uint32",
+              "name": "drawId",
+              "type": "uint32"
+            },
+            {
+              "internalType": "uint32",
+              "name": "expiryDuration",
+              "type": "uint32"
+            },
+            {
+              "internalType": "uint32",
+              "name": "endTimestampOffset",
+              "type": "uint32"
+            },
+            {
+              "internalType": "uint128",
+              "name": "poolStakeCeiling",
+              "type": "uint128"
+            },
+            {
+              "internalType": "uint256",
+              "name": "prize",
+              "type": "uint256"
+            },
+            {
+              "internalType": "uint32[16]",
+              "name": "tiers",
+              "type": "uint32[16]"
+            }
+          ],
+          "internalType": "struct IPrizeConfigHistory.PrizeConfig",
+          "name": "_newPrizeConfig",
+          "type": "tuple"
+        }
+      ],
+      "name": "replace",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "_newManager",
+          "type": "address"
+        }
+      ],
+      "name": "setManager",
+      "outputs": [
+        {
+          "internalType": "bool",
+          "name": "",
+          "type": "bool"
+        }
+      ],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "_newOwner",
+          "type": "address"
+        }
+      ],
+      "name": "transferOwnership",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    }
+  ],
+  "transactionHash": "0xf9734be922cfa1e6e4f6fdb686ede8eeb8d01a2c6f6fcca9b9464bc75d8d0abb",
+  "receipt": {
+    "to": null,
+    "from": "0x3A791e828fDd420fbE16416efDF509E4b9088Dd4",
+    "contractAddress": "0x786e959A49d0484D85912A4e8fD3A0b6eaBdaAe0",
+    "transactionIndex": 15,
+    "gasUsed": "1799154",
+    "logsBloom": "0x00000000000000000000008000000000000000000000000000800000000000000000000000020000000000000000000000000000000000000000000000000000100000000000000000000000000000000001000000000000000000000000000000000000020000000000000000000800000000000000000000000000000000400000000000000000000000000000000000000000000000000000000800000000000000000000000040000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000020000000000000000000000000000000000000000000000000000000000000000000",
+    "blockHash": "0xcbd327299cc04ba2aa4e80db2781b92f9ce85d0b6fad2407f2dac0f9bb102008",
+    "transactionHash": "0xf9734be922cfa1e6e4f6fdb686ede8eeb8d01a2c6f6fcca9b9464bc75d8d0abb",
+    "logs": [
+      {
+        "transactionIndex": 15,
+        "blockNumber": 10807277,
+        "transactionHash": "0xf9734be922cfa1e6e4f6fdb686ede8eeb8d01a2c6f6fcca9b9464bc75d8d0abb",
+        "address": "0x786e959A49d0484D85912A4e8fD3A0b6eaBdaAe0",
+        "topics": [
+          "0x8be0079c531659141344cd1fd0a4f28419497f9722a3daafe3b4186f6b6457e0",
+          "0x0000000000000000000000000000000000000000000000000000000000000000",
+          "0x0000000000000000000000003a791e828fdd420fbe16416efdf509e4b9088dd4"
+        ],
+        "data": "0x",
+        "logIndex": 17,
+        "blockHash": "0xcbd327299cc04ba2aa4e80db2781b92f9ce85d0b6fad2407f2dac0f9bb102008"
+      }
+    ],
+    "blockNumber": 10807277,
+    "cumulativeGasUsed": "7271718",
+    "status": 1,
+    "byzantium": true
+  },
+  "args": [
+    "0x3A791e828fDd420fbE16416efDF509E4b9088Dd4"
+  ],
+  "numDeployments": 1,
+  "solcInputHash": "46a7ec46315ece58f9d4c4ea7316a87f",
+  "metadata": "{\"compiler\":{\"version\":\"0.8.6+commit.11564f7e\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"inputs\":[{\"internalType\":\"address\",\"name\":\"_owner\",\"type\":\"address\"}],\"stateMutability\":\"nonpayable\",\"type\":\"constructor\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"address\",\"name\":\"previousManager\",\"type\":\"address\"},{\"indexed\":true,\"internalType\":\"address\",\"name\":\"newManager\",\"type\":\"address\"}],\"name\":\"ManagerTransferred\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"address\",\"name\":\"pendingOwner\",\"type\":\"address\"}],\"name\":\"OwnershipOffered\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"address\",\"name\":\"previousOwner\",\"type\":\"address\"},{\"indexed\":true,\"internalType\":\"address\",\"name\":\"newOwner\",\"type\":\"address\"}],\"name\":\"OwnershipTransferred\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"uint32\",\"name\":\"drawId\",\"type\":\"uint32\"},{\"components\":[{\"internalType\":\"uint8\",\"name\":\"bitRangeSize\",\"type\":\"uint8\"},{\"internalType\":\"uint8\",\"name\":\"matchCardinality\",\"type\":\"uint8\"},{\"internalType\":\"uint16\",\"name\":\"maxPicksPerUser\",\"type\":\"uint16\"},{\"internalType\":\"uint32\",\"name\":\"drawId\",\"type\":\"uint32\"},{\"internalType\":\"uint32\",\"name\":\"expiryDuration\",\"type\":\"uint32\"},{\"internalType\":\"uint32\",\"name\":\"endTimestampOffset\",\"type\":\"uint32\"},{\"internalType\":\"uint128\",\"name\":\"poolStakeCeiling\",\"type\":\"uint128\"},{\"internalType\":\"uint256\",\"name\":\"prize\",\"type\":\"uint256\"},{\"internalType\":\"uint32[16]\",\"name\":\"tiers\",\"type\":\"uint32[16]\"}],\"indexed\":false,\"internalType\":\"struct IPrizeConfigHistory.PrizeConfig\",\"name\":\"prizeConfig\",\"type\":\"tuple\"}],\"name\":\"PrizeConfigPushed\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"uint32\",\"name\":\"drawId\",\"type\":\"uint32\"},{\"components\":[{\"internalType\":\"uint8\",\"name\":\"bitRangeSize\",\"type\":\"uint8\"},{\"internalType\":\"uint8\",\"name\":\"matchCardinality\",\"type\":\"uint8\"},{\"internalType\":\"uint16\",\"name\":\"maxPicksPerUser\",\"type\":\"uint16\"},{\"internalType\":\"uint32\",\"name\":\"drawId\",\"type\":\"uint32\"},{\"internalType\":\"uint32\",\"name\":\"expiryDuration\",\"type\":\"uint32\"},{\"internalType\":\"uint32\",\"name\":\"endTimestampOffset\",\"type\":\"uint32\"},{\"internalType\":\"uint128\",\"name\":\"poolStakeCeiling\",\"type\":\"uint128\"},{\"internalType\":\"uint256\",\"name\":\"prize\",\"type\":\"uint256\"},{\"internalType\":\"uint32[16]\",\"name\":\"tiers\",\"type\":\"uint32[16]\"}],\"indexed\":false,\"internalType\":\"struct IPrizeConfigHistory.PrizeConfig\",\"name\":\"prizeConfig\",\"type\":\"tuple\"}],\"name\":\"PrizeConfigSet\",\"type\":\"event\"},{\"inputs\":[],\"name\":\"claimOwnership\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"count\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"getNewestDrawId\",\"outputs\":[{\"internalType\":\"uint32\",\"name\":\"\",\"type\":\"uint32\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"getOldestDrawId\",\"outputs\":[{\"internalType\":\"uint32\",\"name\":\"\",\"type\":\"uint32\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint32\",\"name\":\"_drawId\",\"type\":\"uint32\"}],\"name\":\"getPrizeConfig\",\"outputs\":[{\"components\":[{\"internalType\":\"uint8\",\"name\":\"bitRangeSize\",\"type\":\"uint8\"},{\"internalType\":\"uint8\",\"name\":\"matchCardinality\",\"type\":\"uint8\"},{\"internalType\":\"uint16\",\"name\":\"maxPicksPerUser\",\"type\":\"uint16\"},{\"internalType\":\"uint32\",\"name\":\"drawId\",\"type\":\"uint32\"},{\"internalType\":\"uint32\",\"name\":\"expiryDuration\",\"type\":\"uint32\"},{\"internalType\":\"uint32\",\"name\":\"endTimestampOffset\",\"type\":\"uint32\"},{\"internalType\":\"uint128\",\"name\":\"poolStakeCeiling\",\"type\":\"uint128\"},{\"internalType\":\"uint256\",\"name\":\"prize\",\"type\":\"uint256\"},{\"internalType\":\"uint32[16]\",\"name\":\"tiers\",\"type\":\"uint32[16]\"}],\"internalType\":\"struct IPrizeConfigHistory.PrizeConfig\",\"name\":\"prizeConfig\",\"type\":\"tuple\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"_index\",\"type\":\"uint256\"}],\"name\":\"getPrizeConfigAtIndex\",\"outputs\":[{\"components\":[{\"internalType\":\"uint8\",\"name\":\"bitRangeSize\",\"type\":\"uint8\"},{\"internalType\":\"uint8\",\"name\":\"matchCardinality\",\"type\":\"uint8\"},{\"internalType\":\"uint16\",\"name\":\"maxPicksPerUser\",\"type\":\"uint16\"},{\"internalType\":\"uint32\",\"name\":\"drawId\",\"type\":\"uint32\"},{\"internalType\":\"uint32\",\"name\":\"expiryDuration\",\"type\":\"uint32\"},{\"internalType\":\"uint32\",\"name\":\"endTimestampOffset\",\"type\":\"uint32\"},{\"internalType\":\"uint128\",\"name\":\"poolStakeCeiling\",\"type\":\"uint128\"},{\"internalType\":\"uint256\",\"name\":\"prize\",\"type\":\"uint256\"},{\"internalType\":\"uint32[16]\",\"name\":\"tiers\",\"type\":\"uint32[16]\"}],\"internalType\":\"struct IPrizeConfigHistory.PrizeConfig\",\"name\":\"prizeConfig\",\"type\":\"tuple\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint32[]\",\"name\":\"_drawIds\",\"type\":\"uint32[]\"}],\"name\":\"getPrizeConfigList\",\"outputs\":[{\"components\":[{\"internalType\":\"uint8\",\"name\":\"bitRangeSize\",\"type\":\"uint8\"},{\"internalType\":\"uint8\",\"name\":\"matchCardinality\",\"type\":\"uint8\"},{\"internalType\":\"uint16\",\"name\":\"maxPicksPerUser\",\"type\":\"uint16\"},{\"internalType\":\"uint32\",\"name\":\"drawId\",\"type\":\"uint32\"},{\"internalType\":\"uint32\",\"name\":\"expiryDuration\",\"type\":\"uint32\"},{\"internalType\":\"uint32\",\"name\":\"endTimestampOffset\",\"type\":\"uint32\"},{\"internalType\":\"uint128\",\"name\":\"poolStakeCeiling\",\"type\":\"uint128\"},{\"internalType\":\"uint256\",\"name\":\"prize\",\"type\":\"uint256\"},{\"internalType\":\"uint32[16]\",\"name\":\"tiers\",\"type\":\"uint32[16]\"}],\"internalType\":\"struct IPrizeConfigHistory.PrizeConfig[]\",\"name\":\"prizeConfigList\",\"type\":\"tuple[]\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"manager\",\"outputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"owner\",\"outputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"pendingOwner\",\"outputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"components\":[{\"internalType\":\"uint8\",\"name\":\"bitRangeSize\",\"type\":\"uint8\"},{\"internalType\":\"uint8\",\"name\":\"matchCardinality\",\"type\":\"uint8\"},{\"internalType\":\"uint16\",\"name\":\"maxPicksPerUser\",\"type\":\"uint16\"},{\"internalType\":\"uint32\",\"name\":\"drawId\",\"type\":\"uint32\"},{\"internalType\":\"uint32\",\"name\":\"expiryDuration\",\"type\":\"uint32\"},{\"internalType\":\"uint32\",\"name\":\"endTimestampOffset\",\"type\":\"uint32\"},{\"internalType\":\"uint128\",\"name\":\"poolStakeCeiling\",\"type\":\"uint128\"},{\"internalType\":\"uint256\",\"name\":\"prize\",\"type\":\"uint256\"},{\"internalType\":\"uint32[16]\",\"name\":\"tiers\",\"type\":\"uint32[16]\"}],\"internalType\":\"struct IPrizeConfigHistory.PrizeConfig\",\"name\":\"_newPrizeConfig\",\"type\":\"tuple\"}],\"name\":\"popAndPush\",\"outputs\":[{\"internalType\":\"uint32\",\"name\":\"\",\"type\":\"uint32\"}],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"components\":[{\"internalType\":\"uint8\",\"name\":\"bitRangeSize\",\"type\":\"uint8\"},{\"internalType\":\"uint8\",\"name\":\"matchCardinality\",\"type\":\"uint8\"},{\"internalType\":\"uint16\",\"name\":\"maxPicksPerUser\",\"type\":\"uint16\"},{\"internalType\":\"uint32\",\"name\":\"drawId\",\"type\":\"uint32\"},{\"internalType\":\"uint32\",\"name\":\"expiryDuration\",\"type\":\"uint32\"},{\"internalType\":\"uint32\",\"name\":\"endTimestampOffset\",\"type\":\"uint32\"},{\"internalType\":\"uint128\",\"name\":\"poolStakeCeiling\",\"type\":\"uint128\"},{\"internalType\":\"uint256\",\"name\":\"prize\",\"type\":\"uint256\"},{\"internalType\":\"uint32[16]\",\"name\":\"tiers\",\"type\":\"uint32[16]\"}],\"internalType\":\"struct IPrizeConfigHistory.PrizeConfig\",\"name\":\"_nextPrizeConfig\",\"type\":\"tuple\"}],\"name\":\"push\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"renounceOwnership\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"components\":[{\"internalType\":\"uint8\",\"name\":\"bitRangeSize\",\"type\":\"uint8\"},{\"internalType\":\"uint8\",\"name\":\"matchCardinality\",\"type\":\"uint8\"},{\"internalType\":\"uint16\",\"name\":\"maxPicksPerUser\",\"type\":\"uint16\"},{\"internalType\":\"uint32\",\"name\":\"drawId\",\"type\":\"uint32\"},{\"internalType\":\"uint32\",\"name\":\"expiryDuration\",\"type\":\"uint32\"},{\"internalType\":\"uint32\",\"name\":\"endTimestampOffset\",\"type\":\"uint32\"},{\"internalType\":\"uint128\",\"name\":\"poolStakeCeiling\",\"type\":\"uint128\"},{\"internalType\":\"uint256\",\"name\":\"prize\",\"type\":\"uint256\"},{\"internalType\":\"uint32[16]\",\"name\":\"tiers\",\"type\":\"uint32[16]\"}],\"internalType\":\"struct IPrizeConfigHistory.PrizeConfig\",\"name\":\"_newPrizeConfig\",\"type\":\"tuple\"}],\"name\":\"replace\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"_newManager\",\"type\":\"address\"}],\"name\":\"setManager\",\"outputs\":[{\"internalType\":\"bool\",\"name\":\"\",\"type\":\"bool\"}],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"_newOwner\",\"type\":\"address\"}],\"name\":\"transferOwnership\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"}],\"devdoc\":{\"author\":\"PoolTogether Inc Team\",\"events\":{\"PrizeConfigPushed(uint32,(uint8,uint8,uint16,uint32,uint32,uint32,uint128,uint256,uint32[16]))\":{\"params\":{\"drawId\":\"Draw ID at which the PrizeConfig was pushed and is since valid\",\"prizeConfig\":\"PrizeConfig struct\"}},\"PrizeConfigSet(uint32,(uint8,uint8,uint16,uint32,uint32,uint32,uint128,uint256,uint32[16]))\":{\"params\":{\"drawId\":\"Draw ID at which the PrizeConfig was set and is since valid\",\"prizeConfig\":\"PrizeConfig struct\"}}},\"kind\":\"dev\",\"methods\":{\"claimOwnership()\":{\"details\":\"This function is only callable by the `_pendingOwner`.\"},\"constructor\":{\"params\":{\"_owner\":\"Address of the owner\"}},\"count()\":{\"returns\":{\"_0\":\"The number of prize config that have been pushed\"}},\"getNewestDrawId()\":{\"returns\":{\"_0\":\"Draw ID of the last PrizeConfig record\"}},\"getOldestDrawId()\":{\"returns\":{\"_0\":\"Draw ID of the first PrizeConfig record\"}},\"getPrizeConfig(uint32)\":{\"params\":{\"drawId\":\"Draw ID for which to return PrizeConfig struct\"},\"returns\":{\"prizeConfig\":\"The PrizeConfig struct for the passed Draw ID\"}},\"getPrizeConfigAtIndex(uint256)\":{\"params\":{\"index\":\"Index at which the PrizeConfig struct is stored\"},\"returns\":{\"prizeConfig\":\"The PrizeConfig struct at the given index\"}},\"manager()\":{\"returns\":{\"_0\":\"Current `_manager` address.\"}},\"pendingOwner()\":{\"returns\":{\"_0\":\"Current `_pendingOwner` address.\"}},\"popAndPush((uint8,uint8,uint16,uint32,uint32,uint32,uint128,uint256,uint32[16]))\":{\"details\":\"Callable only by the owner.\",\"params\":{\"prizeConfig\":\"Updated PrizeConfigHistory struct\"},\"returns\":{\"_0\":\"Draw ID at which the PrizeConfig was pushed and is since valid\"}},\"push((uint8,uint8,uint16,uint32,uint32,uint32,uint128,uint256,uint32[16]))\":{\"details\":\"Callable only by the owner or manager.\",\"params\":{\"prizeConfig\":\"New PrizeConfig struct to push onto the history array\"}},\"renounceOwnership()\":{\"details\":\"Leaves the contract without owner. It will not be possible to call `onlyOwner` functions anymore. Can only be called by the current owner. NOTE: Renouncing ownership will leave the contract without an owner, thereby removing any functionality that is only available to the owner.\"},\"replace((uint8,uint8,uint16,uint32,uint32,uint32,uint128,uint256,uint32[16]))\":{\"details\":\"Callable only by the owner.\",\"params\":{\"prizeConfig\":\"New PrizeConfig struct that will replace the previous PrizeConfig at the corresponding index\"}},\"setManager(address)\":{\"details\":\"Throws if called by any account other than the owner.\",\"params\":{\"_newManager\":\"New _manager address.\"},\"returns\":{\"_0\":\"Boolean to indicate if the operation was successful or not.\"}},\"transferOwnership(address)\":{\"params\":{\"_newOwner\":\"Address to transfer ownership to.\"}}},\"stateVariables\":{\"history\":{\"details\":\"The history, with sequentially ordered ids, can be searched using binary search. The binary search will find index of a drawId (atOrBefore) using a specific drawId (at). When a new Draw ID is added to the history, a corresponding mapping of the ID is updated in the prizeConfigs mapping.\"},\"prizeConfigs\":{\"details\":\"drawId -> PrizeConfigThe prizeConfigs mapping is updated when a new Draw ID is added to the history.\"}},\"title\":\"PoolTogether V4 PrizeConfigHistory\",\"version\":1},\"userdoc\":{\"events\":{\"PrizeConfigPushed(uint32,(uint8,uint8,uint16,uint32,uint32,uint32,uint128,uint256,uint32[16]))\":{\"notice\":\"Emit when a new PrizeConfig is added to history\"},\"PrizeConfigSet(uint32,(uint8,uint8,uint16,uint32,uint32,uint32,uint128,uint256,uint32[16]))\":{\"notice\":\"Emit when existing PrizeConfig is updated in history\"}},\"kind\":\"user\",\"methods\":{\"claimOwnership()\":{\"notice\":\"Allows the `_pendingOwner` address to finalize the transfer.\"},\"constructor\":{\"notice\":\"PrizeConfigHistory constructor\"},\"count()\":{\"notice\":\"Returns the number of PrizeConfig structs pushed\"},\"getNewestDrawId()\":{\"notice\":\"Returns last Draw ID recorded in the history.\"},\"getOldestDrawId()\":{\"notice\":\"Returns first Draw ID used to initialize history.\"},\"getPrizeConfig(uint32)\":{\"notice\":\"Returns PrizeConfig struct for the passed Draw ID.\"},\"getPrizeConfigAtIndex(uint256)\":{\"notice\":\"Returns the PrizeConfig struct at the given index.\"},\"manager()\":{\"notice\":\"Gets current `_manager`.\"},\"owner()\":{\"notice\":\"Returns the address of the current owner.\"},\"pendingOwner()\":{\"notice\":\"Gets current `_pendingOwner`.\"},\"popAndPush((uint8,uint8,uint16,uint32,uint32,uint32,uint128,uint256,uint32[16]))\":{\"notice\":\"Push PrizeConfigHistory struct onto history array.\"},\"push((uint8,uint8,uint16,uint32,uint32,uint32,uint128,uint256,uint32[16]))\":{\"notice\":\"Push PrizeConfig struct onto history array.\"},\"renounceOwnership()\":{\"notice\":\"Renounce ownership of the contract.\"},\"replace((uint8,uint8,uint16,uint32,uint32,uint32,uint128,uint256,uint32[16]))\":{\"notice\":\"Replace PrizeConfig struct from history array.\"},\"setManager(address)\":{\"notice\":\"Set or change of manager.\"},\"transferOwnership(address)\":{\"notice\":\"Allows current owner to set the `_pendingOwner` address.\"}},\"notice\":\"Contract to store prize configurations\",\"version\":1}},\"settings\":{\"compilationTarget\":{\"contracts/PrizeConfigHistory.sol\":\"PrizeConfigHistory\"},\"evmVersion\":\"berlin\",\"libraries\":{},\"metadata\":{\"bytecodeHash\":\"ipfs\",\"useLiteralContent\":true},\"optimizer\":{\"enabled\":true,\"runs\":2000},\"remappings\":[]},\"sources\":{\"@pooltogether/owner-manager-contracts/contracts/Manageable.sol\":{\"content\":\"// SPDX-License-Identifier: GPL-3.0\\n\\npragma solidity ^0.8.0;\\n\\nimport \\\"./Ownable.sol\\\";\\n\\n/**\\n * @title Abstract manageable contract that can be inherited by other contracts\\n * @notice Contract module based on Ownable which provides a basic access control mechanism, where\\n * there is an owner and a manager that can be granted exclusive access to specific functions.\\n *\\n * By default, the owner is the deployer of the contract.\\n *\\n * The owner account is set through a two steps process.\\n *      1. The current `owner` calls {transferOwnership} to set a `pendingOwner`\\n *      2. The `pendingOwner` calls {acceptOwnership} to accept the ownership transfer\\n *\\n * The manager account needs to be set using {setManager}.\\n *\\n * This module is used through inheritance. It will make available the modifier\\n * `onlyManager`, which can be applied to your functions to restrict their use to\\n * the manager.\\n */\\nabstract contract Manageable is Ownable {\\n    address private _manager;\\n\\n    /**\\n     * @dev Emitted when `_manager` has been changed.\\n     * @param previousManager previous `_manager` address.\\n     * @param newManager new `_manager` address.\\n     */\\n    event ManagerTransferred(address indexed previousManager, address indexed newManager);\\n\\n    /* ============ External Functions ============ */\\n\\n    /**\\n     * @notice Gets current `_manager`.\\n     * @return Current `_manager` address.\\n     */\\n    function manager() public view virtual returns (address) {\\n        return _manager;\\n    }\\n\\n    /**\\n     * @notice Set or change of manager.\\n     * @dev Throws if called by any account other than the owner.\\n     * @param _newManager New _manager address.\\n     * @return Boolean to indicate if the operation was successful or not.\\n     */\\n    function setManager(address _newManager) external onlyOwner returns (bool) {\\n        return _setManager(_newManager);\\n    }\\n\\n    /* ============ Internal Functions ============ */\\n\\n    /**\\n     * @notice Set or change of manager.\\n     * @param _newManager New _manager address.\\n     * @return Boolean to indicate if the operation was successful or not.\\n     */\\n    function _setManager(address _newManager) private returns (bool) {\\n        address _previousManager = _manager;\\n\\n        require(_newManager != _previousManager, \\\"Manageable/existing-manager-address\\\");\\n\\n        _manager = _newManager;\\n\\n        emit ManagerTransferred(_previousManager, _newManager);\\n        return true;\\n    }\\n\\n    /* ============ Modifier Functions ============ */\\n\\n    /**\\n     * @dev Throws if called by any account other than the manager.\\n     */\\n    modifier onlyManager() {\\n        require(manager() == msg.sender, \\\"Manageable/caller-not-manager\\\");\\n        _;\\n    }\\n\\n    /**\\n     * @dev Throws if called by any account other than the manager or the owner.\\n     */\\n    modifier onlyManagerOrOwner() {\\n        require(manager() == msg.sender || owner() == msg.sender, \\\"Manageable/caller-not-manager-or-owner\\\");\\n        _;\\n    }\\n}\\n\",\"keccak256\":\"0xdd8ac008df192c6aa4df83e7037ab090970fda38e1f9fd712bc0ab5e0485fc04\",\"license\":\"GPL-3.0\"},\"@pooltogether/owner-manager-contracts/contracts/Ownable.sol\":{\"content\":\"// SPDX-License-Identifier: GPL-3.0\\n\\npragma solidity ^0.8.0;\\n\\n/**\\n * @title Abstract ownable contract that can be inherited by other contracts\\n * @notice Contract module which provides a basic access control mechanism, where\\n * there is an account (an owner) that can be granted exclusive access to\\n * specific functions.\\n *\\n * By default, the owner is the deployer of the contract.\\n *\\n * The owner account is set through a two steps process.\\n *      1. The current `owner` calls {transferOwnership} to set a `pendingOwner`\\n *      2. The `pendingOwner` calls {acceptOwnership} to accept the ownership transfer\\n *\\n * The manager account needs to be set using {setManager}.\\n *\\n * This module is used through inheritance. It will make available the modifier\\n * `onlyOwner`, which can be applied to your functions to restrict their use to\\n * the owner.\\n */\\nabstract contract Ownable {\\n    address private _owner;\\n    address private _pendingOwner;\\n\\n    /**\\n     * @dev Emitted when `_pendingOwner` has been changed.\\n     * @param pendingOwner new `_pendingOwner` address.\\n     */\\n    event OwnershipOffered(address indexed pendingOwner);\\n\\n    /**\\n     * @dev Emitted when `_owner` has been changed.\\n     * @param previousOwner previous `_owner` address.\\n     * @param newOwner new `_owner` address.\\n     */\\n    event OwnershipTransferred(address indexed previousOwner, address indexed newOwner);\\n\\n    /* ============ Deploy ============ */\\n\\n    /**\\n     * @notice Initializes the contract setting `_initialOwner` as the initial owner.\\n     * @param _initialOwner Initial owner of the contract.\\n     */\\n    constructor(address _initialOwner) {\\n        _setOwner(_initialOwner);\\n    }\\n\\n    /* ============ External Functions ============ */\\n\\n    /**\\n     * @notice Returns the address of the current owner.\\n     */\\n    function owner() public view virtual returns (address) {\\n        return _owner;\\n    }\\n\\n    /**\\n     * @notice Gets current `_pendingOwner`.\\n     * @return Current `_pendingOwner` address.\\n     */\\n    function pendingOwner() external view virtual returns (address) {\\n        return _pendingOwner;\\n    }\\n\\n    /**\\n     * @notice Renounce ownership of the contract.\\n     * @dev Leaves the contract without owner. It will not be possible to call\\n     * `onlyOwner` functions anymore. Can only be called by the current owner.\\n     *\\n     * NOTE: Renouncing ownership will leave the contract without an owner,\\n     * thereby removing any functionality that is only available to the owner.\\n     */\\n    function renounceOwnership() external virtual onlyOwner {\\n        _setOwner(address(0));\\n    }\\n\\n    /**\\n    * @notice Allows current owner to set the `_pendingOwner` address.\\n    * @param _newOwner Address to transfer ownership to.\\n    */\\n    function transferOwnership(address _newOwner) external onlyOwner {\\n        require(_newOwner != address(0), \\\"Ownable/pendingOwner-not-zero-address\\\");\\n\\n        _pendingOwner = _newOwner;\\n\\n        emit OwnershipOffered(_newOwner);\\n    }\\n\\n    /**\\n    * @notice Allows the `_pendingOwner` address to finalize the transfer.\\n    * @dev This function is only callable by the `_pendingOwner`.\\n    */\\n    function claimOwnership() external onlyPendingOwner {\\n        _setOwner(_pendingOwner);\\n        _pendingOwner = address(0);\\n    }\\n\\n    /* ============ Internal Functions ============ */\\n\\n    /**\\n     * @notice Internal function to set the `_owner` of the contract.\\n     * @param _newOwner New `_owner` address.\\n     */\\n    function _setOwner(address _newOwner) private {\\n        address _oldOwner = _owner;\\n        _owner = _newOwner;\\n        emit OwnershipTransferred(_oldOwner, _newOwner);\\n    }\\n\\n    /* ============ Modifier Functions ============ */\\n\\n    /**\\n     * @dev Throws if called by any account other than the owner.\\n     */\\n    modifier onlyOwner() {\\n        require(owner() == msg.sender, \\\"Ownable/caller-not-owner\\\");\\n        _;\\n    }\\n\\n    /**\\n    * @dev Throws if called by any account other than the `pendingOwner`.\\n    */\\n    modifier onlyPendingOwner() {\\n        require(msg.sender == _pendingOwner, \\\"Ownable/caller-not-pendingOwner\\\");\\n        _;\\n    }\\n}\\n\",\"keccak256\":\"0xfd0fd374812c8af45f2633cc7cc4811ccb7bad0a3902a43aded35939eb4a00d1\",\"license\":\"GPL-3.0\"},\"@pooltogether/v4-periphery/contracts/libraries/BinarySearchLib.sol\":{\"content\":\"// SPDX-License-Identifier: GPL-3.0\\npragma solidity 0.8.6;\\n\\n/**\\n * @title  PoolTogether V4 BinarySearchLib\\n * @author PoolTogether Inc Team\\n * @notice BinarySearchLib uses binary search to find a parent contract struct with the drawId parameter\\n * @dev    The implementing contract must provider access to a struct (i.e. PrizeTier) list with is both\\n *         sorted and indexed by the drawId field for binary search to work.\\n */\\nlibrary BinarySearchLib {\\n\\n    /**\\n     * @notice Find ID in array of ordered IDs using Binary Search.\\n        * @param _history uin32[] - Array of IDsq\\n        * @param _drawId uint32 - Draw ID to search for\\n        * @return uint32 - Index of ID in array\\n     */\\n    function binarySearch(uint32[] storage _history, uint32 _drawId) internal view returns (uint32) {\\n        uint32 index;\\n        uint32 leftSide = 0;\\n        uint32 rightSide = uint32(_history.length - 1);\\n\\n        uint32 oldestDrawId = _history[0];\\n        uint32 newestDrawId = _history[rightSide];\\n\\n        require(_drawId >= oldestDrawId, \\\"BinarySearchLib/draw-id-out-of-range\\\");\\n        if (_drawId >= newestDrawId) return rightSide;\\n        if (_drawId == oldestDrawId) return leftSide;\\n\\n        while (true) {\\n            uint32 length = rightSide - leftSide;\\n            uint32 center = leftSide + (length / 2);\\n            uint32 centerID = _history[center];\\n\\n            if (centerID == _drawId) {\\n                index = center;\\n                break;\\n            }\\n\\n            if (length <= 1) {\\n                if(_history[rightSide] <= _drawId) {\\n                    index = rightSide;\\n                } else {\\n                    index = leftSide;\\n                }\\n                break;\\n            }\\n            \\n            if (centerID < _drawId) {\\n                leftSide = center;\\n            } else {\\n                rightSide = center - 1;\\n            }\\n        }\\n\\n        return index;\\n    }\\n}\\n\",\"keccak256\":\"0x97aeec61cae173debbd6105c30526a4d36a4ae1c820d2fffb184ed486eedba9f\",\"license\":\"GPL-3.0\"},\"contracts/PrizeConfigHistory.sol\":{\"content\":\"// SPDX-License-Identifier: GPL-3.0\\n\\npragma solidity 0.8.6;\\n\\nimport \\\"@pooltogether/owner-manager-contracts/contracts/Manageable.sol\\\";\\nimport \\\"@pooltogether/v4-periphery/contracts/libraries/BinarySearchLib.sol\\\";\\n\\nimport \\\"./interfaces/IPrizeConfigHistory.sol\\\";\\n\\n/**\\n * @title  PoolTogether V4 PrizeConfigHistory\\n * @author PoolTogether Inc Team\\n * @notice Contract to store prize configurations\\n */\\ncontract PrizeConfigHistory is IPrizeConfigHistory, Manageable {\\n    /// @dev The uint32[] type is extended with a binarySearch(uint32) function.\\n    using BinarySearchLib for uint32[];\\n\\n    /* ============ Variables ============ */\\n\\n    /**\\n     * @notice Ordered array of Draw IDs.\\n     * @dev The history, with sequentially ordered ids, can be searched using binary search.\\n            The binary search will find index of a drawId (atOrBefore) using a specific drawId (at).\\n            When a new Draw ID is added to the history, a corresponding mapping of the ID is\\n            updated in the prizeConfigs mapping.\\n    */\\n    uint32[] internal history;\\n\\n    /**\\n     * @notice Mapping of Draw ID to PrizeConfig struct.\\n     * @dev drawId -> PrizeConfig\\n     * @dev The prizeConfigs mapping is updated when a new Draw ID is added to the history.\\n     */\\n    mapping(uint32 => PrizeConfig) internal prizeConfigs;\\n\\n    /* ============ Events ============ */\\n\\n    /**\\n     * @notice Emit when a new PrizeConfig is added to history\\n     * @param drawId    Draw ID at which the PrizeConfig was pushed and is since valid\\n     * @param prizeConfig PrizeConfig struct\\n     */\\n    event PrizeConfigPushed(uint32 indexed drawId, PrizeConfig prizeConfig);\\n\\n    /**\\n     * @notice Emit when existing PrizeConfig is updated in history\\n     * @param drawId    Draw ID at which the PrizeConfig was set and is since valid\\n     * @param prizeConfig PrizeConfig struct\\n     */\\n    event PrizeConfigSet(uint32 indexed drawId, PrizeConfig prizeConfig);\\n\\n    /* ============ Constructor ============ */\\n\\n    /**\\n     * @notice PrizeConfigHistory constructor\\n     * @param _owner Address of the owner\\n     */\\n    constructor(address _owner) Ownable(_owner) {}\\n\\n    /* ============ External Functions ============ */\\n\\n    /// @inheritdoc IPrizeConfigHistory\\n    function count() external view override returns (uint256) {\\n        return history.length;\\n    }\\n\\n    /// @inheritdoc IPrizeConfigHistory\\n    function getNewestDrawId() external view override returns (uint32) {\\n        return history[history.length - 1];\\n    }\\n\\n    /// @inheritdoc IPrizeConfigHistory\\n    function getOldestDrawId() external view override returns (uint32) {\\n        return history[0];\\n    }\\n\\n    /// @inheritdoc IPrizeConfigHistory\\n    function getPrizeConfig(uint32 _drawId)\\n        external\\n        view\\n        override\\n        returns (PrizeConfig memory prizeConfig)\\n    {\\n        require(_drawId > 0, \\\"PrizeConfHistory/draw-id-gt-zero\\\");\\n        return prizeConfigs[history.binarySearch(_drawId)];\\n    }\\n\\n    /// @inheritdoc IPrizeConfigHistory\\n    function getPrizeConfigAtIndex(uint256 _index)\\n        external\\n        view\\n        override\\n        returns (PrizeConfig memory prizeConfig)\\n    {\\n        return prizeConfigs[uint32(_index)];\\n    }\\n\\n    // @inheritdoc IPrizeConfigHistory\\n    function getPrizeConfigList(uint32[] calldata _drawIds)\\n        external\\n        view\\n        override\\n        returns (PrizeConfig[] memory prizeConfigList)\\n    {\\n        uint256 _length = _drawIds.length;\\n        PrizeConfig[] memory _data = new PrizeConfig[](_length);\\n\\n        for (uint256 index = 0; index < _length; index++) {\\n            _data[index] = prizeConfigs[history.binarySearch(_drawIds[index])];\\n        }\\n\\n        return _data;\\n    }\\n\\n    /// @inheritdoc IPrizeConfigHistory\\n    function popAndPush(PrizeConfig calldata _newPrizeConfig)\\n        external\\n        override\\n        onlyOwner\\n        returns (uint32)\\n    {\\n        uint256 length = history.length;\\n\\n        require(length > 0, \\\"PrizeConfHistory/history-empty\\\");\\n        require(history[length - 1] == _newPrizeConfig.drawId, \\\"PrizeConfHistory/invalid-draw-id\\\");\\n\\n        _replace(_newPrizeConfig);\\n\\n        return _newPrizeConfig.drawId;\\n    }\\n\\n    /// @inheritdoc IPrizeConfigHistory\\n    function push(PrizeConfig calldata _nextPrizeConfig) external override onlyManagerOrOwner {\\n        _push(_nextPrizeConfig);\\n    }\\n\\n    /// @inheritdoc IPrizeConfigHistory\\n    function replace(PrizeConfig calldata _newPrizeConfig) external override onlyOwner {\\n        _replace(_newPrizeConfig);\\n    }\\n\\n    /* ============ Internal Functions ============ */\\n\\n    /**\\n     * @notice Push PrizeConfigHistory struct onto history array.\\n     * @param _prizeConfig New PrizeConfig struct to push onto history array\\n     */\\n    function _push(PrizeConfig memory _prizeConfig) internal {\\n        uint256 _historyLength = history.length;\\n\\n        if (_historyLength > 0) {\\n            uint256 _id = history[uint32(_historyLength - 1)];\\n\\n            require(_prizeConfig.drawId > uint32(_id), \\\"PrizeConfHistory/nonsequentialId\\\");\\n        }\\n\\n        history.push(_prizeConfig.drawId);\\n        prizeConfigs[uint32(_historyLength)] = _prizeConfig;\\n\\n        emit PrizeConfigPushed(_prizeConfig.drawId, _prizeConfig);\\n    }\\n\\n    /**\\n     * @notice Replace PrizeConfig struct from history array.\\n     * @dev Performs a binary search to find which index in the history array contains the drawId to replace.\\n     * @param _prizeConfig New PrizeConfig struct that will replace the previous PrizeConfig at the corresponding index.\\n     */\\n    function _replace(PrizeConfig calldata _prizeConfig) internal {\\n        require(history.length > 0, \\\"PrizeConfHistory/no-prize-conf\\\");\\n\\n        uint32 oldestDrawId = history[0];\\n        require(_prizeConfig.drawId >= oldestDrawId, \\\"PrizeConfHistory/drawId-beyond\\\");\\n\\n        uint32 index = history.binarySearch(_prizeConfig.drawId);\\n        require(history[index] == _prizeConfig.drawId, \\\"PrizeConfHistory/drawId-mismatch\\\");\\n\\n        prizeConfigs[index] = _prizeConfig;\\n        emit PrizeConfigSet(_prizeConfig.drawId, _prizeConfig);\\n    }\\n}\\n\",\"keccak256\":\"0x5c9529da5a0d2836265ee8e00e403d446dccb2ae4d205320df58cb1bbe83a5de\",\"license\":\"GPL-3.0\"},\"contracts/interfaces/IPrizeConfigHistory.sol\":{\"content\":\"// SPDX-License-Identifier: GPL-3.0\\n\\npragma solidity 0.8.6;\\n\\n/**\\n * @title  PoolTogether V4 IPrizeConfigHistory\\n * @author PoolTogether Inc Team\\n * @notice IPrizeConfigHistory is the base contract for PrizeConfigHistory\\n */\\ninterface IPrizeConfigHistory {\\n    /**\\n     * @notice PrizeConfig struct read every draw.\\n     * @param bitRangeSize Number of bits in decimal allocated to each division\\n     * @param matchCardinality Number of numbers to consider in the 256 bit random number. Must be > 1 and < 256/bitRangeSize.\\n     * @param maxPicksPerUser Maximum number of picks a user can make in this draw\\n     * @param drawId Draw ID at which the PrizeConfig was pushed and is since valid\\n     * @param expiryDuration Length of time in seconds the PrizeDistribution is valid for. Relative to the Draw.timestamp.\\n     * @param endTimestampOffset The end time offset in seconds from which Ticket balances are calculated.\\n     * @param poolStakeCeiling Total globally configured POOL staking ceiling\\n     * @param prize Total prize amount available for this draw\\n     * @param tiers Array of prize tiers percentages, expressed in fraction form with base 1e9. Ordering: index0: grandPrize, index1: runnerUp, etc.\\n     */\\n    struct PrizeConfig {\\n        uint8 bitRangeSize;\\n        uint8 matchCardinality;\\n        uint16 maxPicksPerUser;\\n        uint32 drawId;\\n        uint32 expiryDuration;\\n        uint32 endTimestampOffset;\\n        uint128 poolStakeCeiling;\\n        uint256 prize;\\n        uint32[16] tiers;\\n    }\\n\\n    /**\\n     * @notice Returns the number of PrizeConfig structs pushed\\n     * @return The number of prize config that have been pushed\\n     */\\n    function count() external view returns (uint256);\\n\\n    /**\\n     * @notice Returns last Draw ID recorded in the history.\\n     * @return Draw ID of the last PrizeConfig record\\n     */\\n    function getNewestDrawId() external view returns (uint32);\\n\\n    /**\\n     * @notice Returns first Draw ID used to initialize history.\\n     * @return Draw ID of the first PrizeConfig record\\n     */\\n    function getOldestDrawId() external view returns (uint32);\\n\\n    /**\\n     * @notice Returns PrizeConfig struct for the passed Draw ID.\\n     * @param drawId Draw ID for which to return PrizeConfig struct\\n     * @return The PrizeConfig struct for the passed Draw ID\\n     */\\n    function getPrizeConfig(uint32 drawId) external view returns (PrizeConfig memory);\\n\\n    /**\\n     * @notice Returns the PrizeConfig struct at the given index.\\n     * @param index Index at which the PrizeConfig struct is stored\\n     * @return The PrizeConfig struct at the given index\\n     */\\n    function getPrizeConfigAtIndex(uint256 index) external view returns (PrizeConfig memory);\\n\\n    /**\\n     * @notice Returns a list of PrizeConfig from the history array.\\n     * @param drawIds List of Draw IDs for which to return PrizeConfig structs\\n     * @return The list of PrizeConfig structs for the passed Draw IDs\\n     */\\n    function getPrizeConfigList(uint32[] calldata drawIds)\\n        external\\n        view\\n        returns (PrizeConfig[] memory);\\n\\n    /**\\n     * @notice Push PrizeConfigHistory struct onto history array.\\n     * @dev Callable only by the owner.\\n     * @param prizeConfig Updated PrizeConfigHistory struct\\n     * @return Draw ID at which the PrizeConfig was pushed and is since valid\\n     */\\n    function popAndPush(PrizeConfig calldata prizeConfig) external returns (uint32);\\n\\n    /**\\n     * @notice Push PrizeConfig struct onto history array.\\n     * @dev Callable only by the owner or manager.\\n     * @param prizeConfig New PrizeConfig struct to push onto the history array\\n     */\\n    function push(PrizeConfig calldata prizeConfig) external;\\n\\n    /**\\n     * @notice Replace PrizeConfig struct from history array.\\n     * @dev Callable only by the owner.\\n     * @param prizeConfig New PrizeConfig struct that will replace the previous PrizeConfig at the corresponding index\\n     */\\n    function replace(PrizeConfig calldata prizeConfig) external;\\n}\\n\",\"keccak256\":\"0x611c638e151692571f65122e2c7857f57d68750b2fcaf9c52248b686c1cd52b5\",\"license\":\"GPL-3.0\"}},\"version\":1}",
+  "bytecode": "0x60806040523480156200001157600080fd5b506040516200200638038062002006833981016040819052620000349162000098565b80620000408162000048565b5050620000ca565b600080546001600160a01b038381166001600160a01b0319831681178455604051919092169283917f8be0079c531659141344cd1fd0a4f28419497f9722a3daafe3b4186f6b6457e09190a35050565b600060208284031215620000ab57600080fd5b81516001600160a01b0381168114620000c357600080fd5b9392505050565b611f2c80620000da6000396000f3fe608060405234801561001057600080fd5b50600436106101005760003560e01c80637c615588116100975780639c931493116100665780639c931493146101f4578063d0ebdbe714610214578063e30c397814610237578063f2fde38b1461024857600080fd5b80637c615588146101aa57806381463eea146101bd5780638da5cb5b146101d057806397f43a61146101e157600080fd5b8063481c6a75116100d3578063481c6a75146101605780634e71e0c814610185578063715018a61461018f5780637bf748741461019757600080fd5b806306661abd1461010557806339dd7f081461011b5780633eedcb2314610138578063472b619c14610158575b600080fd5b6003546040519081526020015b60405180910390f35b61012361025b565b60405163ffffffff9091168152602001610112565b61014b6101463660046118af565b61029c565b6040516101129190611af0565b610123610437565b6002546001600160a01b03165b6040516001600160a01b039091168152602001610112565b61018d61045b565b005b61018d6104e9565b61014b6101a5366004611896565b61055e565b6101236101b83660046117cd565b61065c565b61018d6101cb3660046117cd565b6107dd565b6000546001600160a01b031661016d565b61018d6101ef3660046117cd565b6108aa565b610207610202366004611758565b61091c565b60405161011291906119d9565b610227610222366004611728565b610b14565b6040519015158152602001610112565b6001546001600160a01b031661016d565b61018d610256366004611728565b610b88565b6000600360008154811061027157610271611c76565b90600052602060002090600891828204019190066004029054906101000a900463ffffffff16905090565b6102a4611556565b60008263ffffffff16116102ff5760405162461bcd60e51b815260206004820181905260248201527f5072697a65436f6e66486973746f72792f647261772d69642d67742d7a65726f60448201526064015b60405180910390fd5b6004600061030e600385610cc4565b63ffffffff908116825260208083019390935260409182016000908120835161012081018552815460ff80821683526101008083049091169783019790975262010000810461ffff1682870152640100000000810485166060830152680100000000000000008104851660808301526c01000000000000000000000000810490941660a08201527001000000000000000000000000000000009093046fffffffffffffffffffffffffffffffff1660c0840152600181015460e0840152835161020081019485905292949093908501929160028501916010918390855b82829054906101000a900463ffffffff1663ffffffff16815260200190600401906020826003010492830192600103820291508084116103eb5790505050505050815250509050919050565b600380546000919061044b90600190611b82565b8154811061027157610271611c76565b6001546001600160a01b031633146104b55760405162461bcd60e51b815260206004820152601f60248201527f4f776e61626c652f63616c6c65722d6e6f742d70656e64696e674f776e65720060448201526064016102f6565b6001546104ca906001600160a01b0316610f42565b6001805473ffffffffffffffffffffffffffffffffffffffff19169055565b336104fc6000546001600160a01b031690565b6001600160a01b0316146105525760405162461bcd60e51b815260206004820152601860248201527f4f776e61626c652f63616c6c65722d6e6f742d6f776e6572000000000000000060448201526064016102f6565b61055c6000610f42565b565b610566611556565b63ffffffff828116600090815260046020818152604092839020835161012081018552815460ff80821683526101008083049091168386015262010000820461ffff1683880152640100000000820488166060840152680100000000000000008204881660808401526c010000000000000000000000008204881660a08401527001000000000000000000000000000000009091046fffffffffffffffffffffffffffffffff1660c0830152600183015460e08301528551610200810196879052600284018054909816815291969295908701949193601092849186018084116103eb5790505050505050815250509050919050565b6000336106716000546001600160a01b031690565b6001600160a01b0316146106c75760405162461bcd60e51b815260206004820152601860248201527f4f776e61626c652f63616c6c65722d6e6f742d6f776e6572000000000000000060448201526064016102f6565b600354806107175760405162461bcd60e51b815260206004820152601e60248201527f5072697a65436f6e66486973746f72792f686973746f72792d656d707479000060448201526064016102f6565b61072760808401606085016118af565b63ffffffff16600361073a600184611b82565b8154811061074a5761074a611c76565b6000918252602090912060088204015460079091166004026101000a900463ffffffff16146107bb5760405162461bcd60e51b815260206004820181905260248201527f5072697a65436f6e66486973746f72792f696e76616c69642d647261772d696460448201526064016102f6565b6107c483610f9f565b6107d460808401606085016118af565b9150505b919050565b336107f06002546001600160a01b031690565b6001600160a01b0316148061081e5750336108136000546001600160a01b031690565b6001600160a01b0316145b6108905760405162461bcd60e51b815260206004820152602660248201527f4d616e61676561626c652f63616c6c65722d6e6f742d6d616e616765722d6f7260448201527f2d6f776e6572000000000000000000000000000000000000000000000000000060648201526084016102f6565b6108a76108a2368390038301836117e6565b6111bc565b50565b336108bd6000546001600160a01b031690565b6001600160a01b0316146109135760405162461bcd60e51b815260206004820152601860248201527f4f776e61626c652f63616c6c65722d6e6f742d6f776e6572000000000000000060448201526064016102f6565b6108a781610f9f565b60608160008167ffffffffffffffff81111561093a5761093a611c8c565b60405190808252806020026020018201604052801561097357816020015b610960611556565b8152602001906001900390816109585790505b50905060005b82811015610b0957600460006109b788888581811061099a5761099a611c76565b90506020020160208101906109af91906118af565b600390610cc4565b63ffffffff908116825260208083019390935260409182016000908120835161012081018552815460ff80821683526101008083049091169783019790975262010000810461ffff1682870152640100000000810485166060830152680100000000000000008104851660808301526c01000000000000000000000000810490941660a08201527001000000000000000000000000000000009093046fffffffffffffffffffffffffffffffff1660c0840152600181015460e0840152835161020081019485905292949093908501929160028501916010918390855b82829054906101000a900463ffffffff1663ffffffff1681526020019060040190602082600301049283019260010382029150808411610a94579050505050505081525050828281518110610aeb57610aeb611c76565b60200260200101819052508080610b0190611c27565b915050610979565b509150505b92915050565b600033610b296000546001600160a01b031690565b6001600160a01b031614610b7f5760405162461bcd60e51b815260206004820152601860248201527f4f776e61626c652f63616c6c65722d6e6f742d6f776e6572000000000000000060448201526064016102f6565b610b0e8261146a565b33610b9b6000546001600160a01b031690565b6001600160a01b031614610bf15760405162461bcd60e51b815260206004820152601860248201527f4f776e61626c652f63616c6c65722d6e6f742d6f776e6572000000000000000060448201526064016102f6565b6001600160a01b038116610c6d5760405162461bcd60e51b815260206004820152602560248201527f4f776e61626c652f70656e64696e674f776e65722d6e6f742d7a65726f2d616460448201527f647265737300000000000000000000000000000000000000000000000000000060648201526084016102f6565b6001805473ffffffffffffffffffffffffffffffffffffffff19166001600160a01b0383169081179091556040517f239a2ddded15777fa246aed5f7e1a9bc69a39d4eb4a397034d1d85766cca7d4c90600090a250565b60008060008060018680549050610cdb9190611b82565b9050600086600081548110610cf257610cf2611c76565b90600052602060002090600891828204019190066004029054906101000a900463ffffffff1690506000878363ffffffff1681548110610d3457610d34611c76565b90600052602060002090600891828204019190066004029054906101000a900463ffffffff1690508163ffffffff168763ffffffff161015610ddd5760405162461bcd60e51b8152602060048201526024808201527f42696e6172795365617263684c69622f647261772d69642d6f75742d6f662d7260448201527f616e67650000000000000000000000000000000000000000000000000000000060648201526084016102f6565b8063ffffffff168763ffffffff1610610dfd578295505050505050610b0e565b8163ffffffff168763ffffffff161415610e1e578395505050505050610b0e565b6000610e2a8585611b99565b90506000610e39600283611b51565b610e439087611b29565b905060008a8263ffffffff1681548110610e5f57610e5f611c76565b6000918252602090912060088204015460079091166004026101000a900463ffffffff90811691508a16811415610e9a57509550610f369050565b60018363ffffffff1611610f04578963ffffffff168b8763ffffffff1681548110610ec757610ec7611c76565b6000918252602090912060088204015460079091166004026101000a900463ffffffff1611610ef857859750610efc565b8697505b505050610f36565b8963ffffffff168163ffffffff161015610f2057819650610f2e565b610f2b600183611b99565b95505b505050610e1e565b50929695505050505050565b600080546001600160a01b0383811673ffffffffffffffffffffffffffffffffffffffff19831681178455604051919092169283917f8be0079c531659141344cd1fd0a4f28419497f9722a3daafe3b4186f6b6457e09190a35050565b600354610fee5760405162461bcd60e51b815260206004820152601e60248201527f5072697a65436f6e66486973746f72792f6e6f2d7072697a652d636f6e66000060448201526064016102f6565b6000600360008154811061100457611004611c76565b6000918252602090912060088204015460079091166004026101000a900463ffffffff1690508061103b60808401606085016118af565b63ffffffff16101561108f5760405162461bcd60e51b815260206004820152601e60248201527f5072697a65436f6e66486973746f72792f6472617749642d6265796f6e64000060448201526064016102f6565b60006110a46109af60808501606086016118af565b90506110b660808401606085016118af565b63ffffffff1660038263ffffffff16815481106110d5576110d5611c76565b6000918252602090912060088204015460079091166004026101000a900463ffffffff16146111465760405162461bcd60e51b815260206004820181905260248201527f5072697a65436f6e66486973746f72792f6472617749642d6d69736d6174636860448201526064016102f6565b63ffffffff8116600090815260046020526040902083906111678282611cc9565b5061117a905060808401606085016118af565b63ffffffff167f92236100d178e89c1580fb6878cbbce3b1654066b0955ea82c1f2a1ed0dbb3d7846040516111af9190611a28565b60405180910390a2505050565b600354801561126857600060036111d4600184611b82565b63ffffffff16815481106111ea576111ea611c76565b60009182526020909120600882040154606085015160079092166004026101000a900463ffffffff90811692501681106112665760405162461bcd60e51b815260206004820181905260248201527f5072697a65436f6e66486973746f72792f6e6f6e73657175656e7469616c496460448201526064016102f6565b505b6060820180516003805460018082019092557fc2575a0e9e593c00f959f8c92f12db2869c3395a3b0502d05e2516446f71f85b600882040180546007909216600490810261010090810a63ffffffff8181021990951696851602959095179091558582166000908152602091825260409081902088518154938a0151928a0151975160808b015160a08c015160c08d015160ff94851661ffff1990981697909717939095168902929092177fffffffffffffffffffffffffffffffffffffffffffffffff000000000000ffff166201000061ffff909a169990990267ffffffff0000000019169890981764010000000098861698909802979097177fffffffffffffffffffffffffffffffff0000000000000000ffffffffffffffff1668010000000000000000978516979097027fffffffffffffffffffffffffffffffff00000000ffffffffffffffffffffffff16969096176c010000000000000000000000009190931602919091176fffffffffffffffffffffffffffffffff908116700100000000000000000000000000000000919092160217835560e08501519083015583015183919061142090600283019060106115a9565b50905050816060015163ffffffff167fb2ab9cc87a49aa9eefe05b8106cce5414d40bd3061f391eaf6003806845de4ea8360405161145e9190611af0565b60405180910390a25050565b6002546000906001600160a01b039081169083168114156114f35760405162461bcd60e51b815260206004820152602360248201527f4d616e61676561626c652f6578697374696e672d6d616e616765722d6164647260448201527f657373000000000000000000000000000000000000000000000000000000000060648201526084016102f6565b6002805473ffffffffffffffffffffffffffffffffffffffff19166001600160a01b0385811691821790925560405190918316907f9cb45c728de594dab506a1f1a8554e24c8eeaf983618d5ec5dd7bc6f3c49feee90600090a350600192915050565b6040805161012081018252600080825260208201819052918101829052606081018290526080810182905260a0810182905260c0810182905260e081019190915261010081016115a4611645565b905290565b6002830191839082156116355791602002820160005b8382111561160357835183826101000a81548163ffffffff021916908363ffffffff16021790555092602001926004016020816003010492830192600103026115bf565b80156116335782816101000a81549063ffffffff0219169055600401602081600301049283019260010302611603565b505b50611641929150611664565b5090565b6040518061020001604052806010906020820280368337509192915050565b5b808211156116415760008155600101611665565b600082601f83011261168a57600080fd5b60405161020080820182811067ffffffffffffffff821117156116af576116af611c8c565b60405281848281018710156116c357600080fd5b600092505b60108310156116f15780356116dc81611ed5565b825260019290920191602091820191016116c8565b509195945050505050565b80356107d881611ea7565b80356107d881611ec5565b80356107d881611ed5565b80356107d881611ee7565b60006020828403121561173a57600080fd5b81356001600160a01b038116811461175157600080fd5b9392505050565b6000806020838503121561176b57600080fd5b823567ffffffffffffffff8082111561178357600080fd5b818501915085601f83011261179757600080fd5b8135818111156117a657600080fd5b8660208260051b85010111156117bb57600080fd5b60209290920196919550909350505050565b600061030082840312156117e057600080fd5b50919050565b600061030082840312156117f957600080fd5b611801611aff565b61180a8361171d565b81526118186020840161171d565b602082015261182960408401611707565b604082015261183a60608401611712565b606082015261184b60808401611712565b608082015261185c60a08401611712565b60a082015261186d60c084016116fc565b60c082015260e083013560e082015261010061188b85828601611679565b908201529392505050565b6000602082840312156118a857600080fd5b5035919050565b6000602082840312156118c157600080fd5b813561175181611ed5565b8060005b60108110156118ff5781356118e481611ed5565b63ffffffff16845260209384019391909101906001016118d0565b50505050565b8060005b60108110156118ff57815163ffffffff16845260209384019390910190600101611909565b60ff815116825260ff602082015116602083015261ffff60408201511660408301526060810151611967606084018263ffffffff169052565b50608081015161197f608084018263ffffffff169052565b5060a081015161199760a084018263ffffffff169052565b5060c08101516119bb60c08401826fffffffffffffffffffffffffffffffff169052565b5060e081015160e0830152610100808201516118ff82850182611905565b6020808252825182820181905260009190848201906040850190845b81811015611a1c57611a0883855161192e565b9284019261030092909201916001016119f5565b50909695505050505050565b61030081018235611a3881611ee7565b60ff168252611a496020840161171d565b60ff166020830152611a5d60408401611707565b61ffff166040830152611a7260608401611712565b63ffffffff166060830152611a8960808401611712565b63ffffffff166080830152611aa060a08401611712565b63ffffffff1660a0830152611ab760c084016116fc565b6fffffffffffffffffffffffffffffffff1660c083015260e08381013590830152610100611ae98184018286016118cc565b5092915050565b6103008101610b0e828461192e565b604051610120810167ffffffffffffffff81118282101715611b2357611b23611c8c565b60405290565b600063ffffffff808316818516808303821115611b4857611b48611c60565b01949350505050565b600063ffffffff80841680611b7657634e487b7160e01b600052601260045260246000fd5b92169190910492915050565b600082821015611b9457611b94611c60565b500390565b600063ffffffff83811690831681811015611bb657611bb6611c60565b039392505050565b81816000805b6010811015611c1f578335611bd881611ed5565b835463ffffffff600385901b81811b801990931693909116901b1617835560209390930192600490910190601c821115611c1757600091506001830192505b600101611bc4565b505050505050565b60007fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff821415611c5957611c59611c60565b5060010190565b634e487b7160e01b600052601160045260246000fd5b634e487b7160e01b600052603260045260246000fd5b634e487b7160e01b600052604160045260246000fd5b60008135610b0e81611ea7565b60008135610b0e81611ec5565b60008135610b0e81611ed5565b8135611cd481611ee7565b60ff811690508154817fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff0082161783556020840135611d1181611ee7565b61ff008160081b168361ffff19841617178455505050611d6b611d3660408401611caf565b82547fffffffffffffffffffffffffffffffffffffffffffffffffffffffff0000ffff1660109190911b63ffff000016178255565b611d9c611d7a60608401611cbc565b825467ffffffff00000000191660209190911b67ffffffff0000000016178255565b611de8611dab60808401611cbc565b82547fffffffffffffffffffffffffffffffffffffffff00000000ffffffffffffffff1660409190911b6bffffffff000000000000000016178255565b611e38611df760a08401611cbc565b82547fffffffffffffffffffffffffffffffff00000000ffffffffffffffffffffffff1660609190911b6fffffffff00000000000000000000000016178255565b611e88611e4760c08401611ca2565b82546fffffffffffffffffffffffffffffffff1660809190911b7fffffffffffffffffffffffffffffffff0000000000000000000000000000000016178255565b60e08201356001820155611ea3610100830160028301611bbe565b5050565b6fffffffffffffffffffffffffffffffff811681146108a757600080fd5b61ffff811681146108a757600080fd5b63ffffffff811681146108a757600080fd5b60ff811681146108a757600080fdfea2646970667358221220d8edcbe97a0787d8dd4a9f699c0a4e3b1b3f96cb0a2ffc4d8f0dc7f8e24da54864736f6c63430008060033",
+  "deployedBytecode": "0x608060405234801561001057600080fd5b50600436106101005760003560e01c80637c615588116100975780639c931493116100665780639c931493146101f4578063d0ebdbe714610214578063e30c397814610237578063f2fde38b1461024857600080fd5b80637c615588146101aa57806381463eea146101bd5780638da5cb5b146101d057806397f43a61146101e157600080fd5b8063481c6a75116100d3578063481c6a75146101605780634e71e0c814610185578063715018a61461018f5780637bf748741461019757600080fd5b806306661abd1461010557806339dd7f081461011b5780633eedcb2314610138578063472b619c14610158575b600080fd5b6003546040519081526020015b60405180910390f35b61012361025b565b60405163ffffffff9091168152602001610112565b61014b6101463660046118af565b61029c565b6040516101129190611af0565b610123610437565b6002546001600160a01b03165b6040516001600160a01b039091168152602001610112565b61018d61045b565b005b61018d6104e9565b61014b6101a5366004611896565b61055e565b6101236101b83660046117cd565b61065c565b61018d6101cb3660046117cd565b6107dd565b6000546001600160a01b031661016d565b61018d6101ef3660046117cd565b6108aa565b610207610202366004611758565b61091c565b60405161011291906119d9565b610227610222366004611728565b610b14565b6040519015158152602001610112565b6001546001600160a01b031661016d565b61018d610256366004611728565b610b88565b6000600360008154811061027157610271611c76565b90600052602060002090600891828204019190066004029054906101000a900463ffffffff16905090565b6102a4611556565b60008263ffffffff16116102ff5760405162461bcd60e51b815260206004820181905260248201527f5072697a65436f6e66486973746f72792f647261772d69642d67742d7a65726f60448201526064015b60405180910390fd5b6004600061030e600385610cc4565b63ffffffff908116825260208083019390935260409182016000908120835161012081018552815460ff80821683526101008083049091169783019790975262010000810461ffff1682870152640100000000810485166060830152680100000000000000008104851660808301526c01000000000000000000000000810490941660a08201527001000000000000000000000000000000009093046fffffffffffffffffffffffffffffffff1660c0840152600181015460e0840152835161020081019485905292949093908501929160028501916010918390855b82829054906101000a900463ffffffff1663ffffffff16815260200190600401906020826003010492830192600103820291508084116103eb5790505050505050815250509050919050565b600380546000919061044b90600190611b82565b8154811061027157610271611c76565b6001546001600160a01b031633146104b55760405162461bcd60e51b815260206004820152601f60248201527f4f776e61626c652f63616c6c65722d6e6f742d70656e64696e674f776e65720060448201526064016102f6565b6001546104ca906001600160a01b0316610f42565b6001805473ffffffffffffffffffffffffffffffffffffffff19169055565b336104fc6000546001600160a01b031690565b6001600160a01b0316146105525760405162461bcd60e51b815260206004820152601860248201527f4f776e61626c652f63616c6c65722d6e6f742d6f776e6572000000000000000060448201526064016102f6565b61055c6000610f42565b565b610566611556565b63ffffffff828116600090815260046020818152604092839020835161012081018552815460ff80821683526101008083049091168386015262010000820461ffff1683880152640100000000820488166060840152680100000000000000008204881660808401526c010000000000000000000000008204881660a08401527001000000000000000000000000000000009091046fffffffffffffffffffffffffffffffff1660c0830152600183015460e08301528551610200810196879052600284018054909816815291969295908701949193601092849186018084116103eb5790505050505050815250509050919050565b6000336106716000546001600160a01b031690565b6001600160a01b0316146106c75760405162461bcd60e51b815260206004820152601860248201527f4f776e61626c652f63616c6c65722d6e6f742d6f776e6572000000000000000060448201526064016102f6565b600354806107175760405162461bcd60e51b815260206004820152601e60248201527f5072697a65436f6e66486973746f72792f686973746f72792d656d707479000060448201526064016102f6565b61072760808401606085016118af565b63ffffffff16600361073a600184611b82565b8154811061074a5761074a611c76565b6000918252602090912060088204015460079091166004026101000a900463ffffffff16146107bb5760405162461bcd60e51b815260206004820181905260248201527f5072697a65436f6e66486973746f72792f696e76616c69642d647261772d696460448201526064016102f6565b6107c483610f9f565b6107d460808401606085016118af565b9150505b919050565b336107f06002546001600160a01b031690565b6001600160a01b0316148061081e5750336108136000546001600160a01b031690565b6001600160a01b0316145b6108905760405162461bcd60e51b815260206004820152602660248201527f4d616e61676561626c652f63616c6c65722d6e6f742d6d616e616765722d6f7260448201527f2d6f776e6572000000000000000000000000000000000000000000000000000060648201526084016102f6565b6108a76108a2368390038301836117e6565b6111bc565b50565b336108bd6000546001600160a01b031690565b6001600160a01b0316146109135760405162461bcd60e51b815260206004820152601860248201527f4f776e61626c652f63616c6c65722d6e6f742d6f776e6572000000000000000060448201526064016102f6565b6108a781610f9f565b60608160008167ffffffffffffffff81111561093a5761093a611c8c565b60405190808252806020026020018201604052801561097357816020015b610960611556565b8152602001906001900390816109585790505b50905060005b82811015610b0957600460006109b788888581811061099a5761099a611c76565b90506020020160208101906109af91906118af565b600390610cc4565b63ffffffff908116825260208083019390935260409182016000908120835161012081018552815460ff80821683526101008083049091169783019790975262010000810461ffff1682870152640100000000810485166060830152680100000000000000008104851660808301526c01000000000000000000000000810490941660a08201527001000000000000000000000000000000009093046fffffffffffffffffffffffffffffffff1660c0840152600181015460e0840152835161020081019485905292949093908501929160028501916010918390855b82829054906101000a900463ffffffff1663ffffffff1681526020019060040190602082600301049283019260010382029150808411610a94579050505050505081525050828281518110610aeb57610aeb611c76565b60200260200101819052508080610b0190611c27565b915050610979565b509150505b92915050565b600033610b296000546001600160a01b031690565b6001600160a01b031614610b7f5760405162461bcd60e51b815260206004820152601860248201527f4f776e61626c652f63616c6c65722d6e6f742d6f776e6572000000000000000060448201526064016102f6565b610b0e8261146a565b33610b9b6000546001600160a01b031690565b6001600160a01b031614610bf15760405162461bcd60e51b815260206004820152601860248201527f4f776e61626c652f63616c6c65722d6e6f742d6f776e6572000000000000000060448201526064016102f6565b6001600160a01b038116610c6d5760405162461bcd60e51b815260206004820152602560248201527f4f776e61626c652f70656e64696e674f776e65722d6e6f742d7a65726f2d616460448201527f647265737300000000000000000000000000000000000000000000000000000060648201526084016102f6565b6001805473ffffffffffffffffffffffffffffffffffffffff19166001600160a01b0383169081179091556040517f239a2ddded15777fa246aed5f7e1a9bc69a39d4eb4a397034d1d85766cca7d4c90600090a250565b60008060008060018680549050610cdb9190611b82565b9050600086600081548110610cf257610cf2611c76565b90600052602060002090600891828204019190066004029054906101000a900463ffffffff1690506000878363ffffffff1681548110610d3457610d34611c76565b90600052602060002090600891828204019190066004029054906101000a900463ffffffff1690508163ffffffff168763ffffffff161015610ddd5760405162461bcd60e51b8152602060048201526024808201527f42696e6172795365617263684c69622f647261772d69642d6f75742d6f662d7260448201527f616e67650000000000000000000000000000000000000000000000000000000060648201526084016102f6565b8063ffffffff168763ffffffff1610610dfd578295505050505050610b0e565b8163ffffffff168763ffffffff161415610e1e578395505050505050610b0e565b6000610e2a8585611b99565b90506000610e39600283611b51565b610e439087611b29565b905060008a8263ffffffff1681548110610e5f57610e5f611c76565b6000918252602090912060088204015460079091166004026101000a900463ffffffff90811691508a16811415610e9a57509550610f369050565b60018363ffffffff1611610f04578963ffffffff168b8763ffffffff1681548110610ec757610ec7611c76565b6000918252602090912060088204015460079091166004026101000a900463ffffffff1611610ef857859750610efc565b8697505b505050610f36565b8963ffffffff168163ffffffff161015610f2057819650610f2e565b610f2b600183611b99565b95505b505050610e1e565b50929695505050505050565b600080546001600160a01b0383811673ffffffffffffffffffffffffffffffffffffffff19831681178455604051919092169283917f8be0079c531659141344cd1fd0a4f28419497f9722a3daafe3b4186f6b6457e09190a35050565b600354610fee5760405162461bcd60e51b815260206004820152601e60248201527f5072697a65436f6e66486973746f72792f6e6f2d7072697a652d636f6e66000060448201526064016102f6565b6000600360008154811061100457611004611c76565b6000918252602090912060088204015460079091166004026101000a900463ffffffff1690508061103b60808401606085016118af565b63ffffffff16101561108f5760405162461bcd60e51b815260206004820152601e60248201527f5072697a65436f6e66486973746f72792f6472617749642d6265796f6e64000060448201526064016102f6565b60006110a46109af60808501606086016118af565b90506110b660808401606085016118af565b63ffffffff1660038263ffffffff16815481106110d5576110d5611c76565b6000918252602090912060088204015460079091166004026101000a900463ffffffff16146111465760405162461bcd60e51b815260206004820181905260248201527f5072697a65436f6e66486973746f72792f6472617749642d6d69736d6174636860448201526064016102f6565b63ffffffff8116600090815260046020526040902083906111678282611cc9565b5061117a905060808401606085016118af565b63ffffffff167f92236100d178e89c1580fb6878cbbce3b1654066b0955ea82c1f2a1ed0dbb3d7846040516111af9190611a28565b60405180910390a2505050565b600354801561126857600060036111d4600184611b82565b63ffffffff16815481106111ea576111ea611c76565b60009182526020909120600882040154606085015160079092166004026101000a900463ffffffff90811692501681106112665760405162461bcd60e51b815260206004820181905260248201527f5072697a65436f6e66486973746f72792f6e6f6e73657175656e7469616c496460448201526064016102f6565b505b6060820180516003805460018082019092557fc2575a0e9e593c00f959f8c92f12db2869c3395a3b0502d05e2516446f71f85b600882040180546007909216600490810261010090810a63ffffffff8181021990951696851602959095179091558582166000908152602091825260409081902088518154938a0151928a0151975160808b015160a08c015160c08d015160ff94851661ffff1990981697909717939095168902929092177fffffffffffffffffffffffffffffffffffffffffffffffff000000000000ffff166201000061ffff909a169990990267ffffffff0000000019169890981764010000000098861698909802979097177fffffffffffffffffffffffffffffffff0000000000000000ffffffffffffffff1668010000000000000000978516979097027fffffffffffffffffffffffffffffffff00000000ffffffffffffffffffffffff16969096176c010000000000000000000000009190931602919091176fffffffffffffffffffffffffffffffff908116700100000000000000000000000000000000919092160217835560e08501519083015583015183919061142090600283019060106115a9565b50905050816060015163ffffffff167fb2ab9cc87a49aa9eefe05b8106cce5414d40bd3061f391eaf6003806845de4ea8360405161145e9190611af0565b60405180910390a25050565b6002546000906001600160a01b039081169083168114156114f35760405162461bcd60e51b815260206004820152602360248201527f4d616e61676561626c652f6578697374696e672d6d616e616765722d6164647260448201527f657373000000000000000000000000000000000000000000000000000000000060648201526084016102f6565b6002805473ffffffffffffffffffffffffffffffffffffffff19166001600160a01b0385811691821790925560405190918316907f9cb45c728de594dab506a1f1a8554e24c8eeaf983618d5ec5dd7bc6f3c49feee90600090a350600192915050565b6040805161012081018252600080825260208201819052918101829052606081018290526080810182905260a0810182905260c0810182905260e081019190915261010081016115a4611645565b905290565b6002830191839082156116355791602002820160005b8382111561160357835183826101000a81548163ffffffff021916908363ffffffff16021790555092602001926004016020816003010492830192600103026115bf565b80156116335782816101000a81549063ffffffff0219169055600401602081600301049283019260010302611603565b505b50611641929150611664565b5090565b6040518061020001604052806010906020820280368337509192915050565b5b808211156116415760008155600101611665565b600082601f83011261168a57600080fd5b60405161020080820182811067ffffffffffffffff821117156116af576116af611c8c565b60405281848281018710156116c357600080fd5b600092505b60108310156116f15780356116dc81611ed5565b825260019290920191602091820191016116c8565b509195945050505050565b80356107d881611ea7565b80356107d881611ec5565b80356107d881611ed5565b80356107d881611ee7565b60006020828403121561173a57600080fd5b81356001600160a01b038116811461175157600080fd5b9392505050565b6000806020838503121561176b57600080fd5b823567ffffffffffffffff8082111561178357600080fd5b818501915085601f83011261179757600080fd5b8135818111156117a657600080fd5b8660208260051b85010111156117bb57600080fd5b60209290920196919550909350505050565b600061030082840312156117e057600080fd5b50919050565b600061030082840312156117f957600080fd5b611801611aff565b61180a8361171d565b81526118186020840161171d565b602082015261182960408401611707565b604082015261183a60608401611712565b606082015261184b60808401611712565b608082015261185c60a08401611712565b60a082015261186d60c084016116fc565b60c082015260e083013560e082015261010061188b85828601611679565b908201529392505050565b6000602082840312156118a857600080fd5b5035919050565b6000602082840312156118c157600080fd5b813561175181611ed5565b8060005b60108110156118ff5781356118e481611ed5565b63ffffffff16845260209384019391909101906001016118d0565b50505050565b8060005b60108110156118ff57815163ffffffff16845260209384019390910190600101611909565b60ff815116825260ff602082015116602083015261ffff60408201511660408301526060810151611967606084018263ffffffff169052565b50608081015161197f608084018263ffffffff169052565b5060a081015161199760a084018263ffffffff169052565b5060c08101516119bb60c08401826fffffffffffffffffffffffffffffffff169052565b5060e081015160e0830152610100808201516118ff82850182611905565b6020808252825182820181905260009190848201906040850190845b81811015611a1c57611a0883855161192e565b9284019261030092909201916001016119f5565b50909695505050505050565b61030081018235611a3881611ee7565b60ff168252611a496020840161171d565b60ff166020830152611a5d60408401611707565b61ffff166040830152611a7260608401611712565b63ffffffff166060830152611a8960808401611712565b63ffffffff166080830152611aa060a08401611712565b63ffffffff1660a0830152611ab760c084016116fc565b6fffffffffffffffffffffffffffffffff1660c083015260e08381013590830152610100611ae98184018286016118cc565b5092915050565b6103008101610b0e828461192e565b604051610120810167ffffffffffffffff81118282101715611b2357611b23611c8c565b60405290565b600063ffffffff808316818516808303821115611b4857611b48611c60565b01949350505050565b600063ffffffff80841680611b7657634e487b7160e01b600052601260045260246000fd5b92169190910492915050565b600082821015611b9457611b94611c60565b500390565b600063ffffffff83811690831681811015611bb657611bb6611c60565b039392505050565b81816000805b6010811015611c1f578335611bd881611ed5565b835463ffffffff600385901b81811b801990931693909116901b1617835560209390930192600490910190601c821115611c1757600091506001830192505b600101611bc4565b505050505050565b60007fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff821415611c5957611c59611c60565b5060010190565b634e487b7160e01b600052601160045260246000fd5b634e487b7160e01b600052603260045260246000fd5b634e487b7160e01b600052604160045260246000fd5b60008135610b0e81611ea7565b60008135610b0e81611ec5565b60008135610b0e81611ed5565b8135611cd481611ee7565b60ff811690508154817fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff0082161783556020840135611d1181611ee7565b61ff008160081b168361ffff19841617178455505050611d6b611d3660408401611caf565b82547fffffffffffffffffffffffffffffffffffffffffffffffffffffffff0000ffff1660109190911b63ffff000016178255565b611d9c611d7a60608401611cbc565b825467ffffffff00000000191660209190911b67ffffffff0000000016178255565b611de8611dab60808401611cbc565b82547fffffffffffffffffffffffffffffffffffffffff00000000ffffffffffffffff1660409190911b6bffffffff000000000000000016178255565b611e38611df760a08401611cbc565b82547fffffffffffffffffffffffffffffffff00000000ffffffffffffffffffffffff1660609190911b6fffffffff00000000000000000000000016178255565b611e88611e4760c08401611ca2565b82546fffffffffffffffffffffffffffffffff1660809190911b7fffffffffffffffffffffffffffffffff0000000000000000000000000000000016178255565b60e08201356001820155611ea3610100830160028301611bbe565b5050565b6fffffffffffffffffffffffffffffffff811681146108a757600080fd5b61ffff811681146108a757600080fd5b63ffffffff811681146108a757600080fd5b60ff811681146108a757600080fdfea2646970667358221220d8edcbe97a0787d8dd4a9f699c0a4e3b1b3f96cb0a2ffc4d8f0dc7f8e24da54864736f6c63430008060033",
+  "devdoc": {
+    "author": "PoolTogether Inc Team",
+    "events": {
+      "PrizeConfigPushed(uint32,(uint8,uint8,uint16,uint32,uint32,uint32,uint128,uint256,uint32[16]))": {
+        "params": {
+          "drawId": "Draw ID at which the PrizeConfig was pushed and is since valid",
+          "prizeConfig": "PrizeConfig struct"
+        }
+      },
+      "PrizeConfigSet(uint32,(uint8,uint8,uint16,uint32,uint32,uint32,uint128,uint256,uint32[16]))": {
+        "params": {
+          "drawId": "Draw ID at which the PrizeConfig was set and is since valid",
+          "prizeConfig": "PrizeConfig struct"
+        }
+      }
+    },
+    "kind": "dev",
+    "methods": {
+      "claimOwnership()": {
+        "details": "This function is only callable by the `_pendingOwner`."
+      },
+      "constructor": {
+        "params": {
+          "_owner": "Address of the owner"
+        }
+      },
+      "count()": {
+        "returns": {
+          "_0": "The number of prize config that have been pushed"
+        }
+      },
+      "getNewestDrawId()": {
+        "returns": {
+          "_0": "Draw ID of the last PrizeConfig record"
+        }
+      },
+      "getOldestDrawId()": {
+        "returns": {
+          "_0": "Draw ID of the first PrizeConfig record"
+        }
+      },
+      "getPrizeConfig(uint32)": {
+        "params": {
+          "drawId": "Draw ID for which to return PrizeConfig struct"
+        },
+        "returns": {
+          "prizeConfig": "The PrizeConfig struct for the passed Draw ID"
+        }
+      },
+      "getPrizeConfigAtIndex(uint256)": {
+        "params": {
+          "index": "Index at which the PrizeConfig struct is stored"
+        },
+        "returns": {
+          "prizeConfig": "The PrizeConfig struct at the given index"
+        }
+      },
+      "manager()": {
+        "returns": {
+          "_0": "Current `_manager` address."
+        }
+      },
+      "pendingOwner()": {
+        "returns": {
+          "_0": "Current `_pendingOwner` address."
+        }
+      },
+      "popAndPush((uint8,uint8,uint16,uint32,uint32,uint32,uint128,uint256,uint32[16]))": {
+        "details": "Callable only by the owner.",
+        "params": {
+          "prizeConfig": "Updated PrizeConfigHistory struct"
+        },
+        "returns": {
+          "_0": "Draw ID at which the PrizeConfig was pushed and is since valid"
+        }
+      },
+      "push((uint8,uint8,uint16,uint32,uint32,uint32,uint128,uint256,uint32[16]))": {
+        "details": "Callable only by the owner or manager.",
+        "params": {
+          "prizeConfig": "New PrizeConfig struct to push onto the history array"
+        }
+      },
+      "renounceOwnership()": {
+        "details": "Leaves the contract without owner. It will not be possible to call `onlyOwner` functions anymore. Can only be called by the current owner. NOTE: Renouncing ownership will leave the contract without an owner, thereby removing any functionality that is only available to the owner."
+      },
+      "replace((uint8,uint8,uint16,uint32,uint32,uint32,uint128,uint256,uint32[16]))": {
+        "details": "Callable only by the owner.",
+        "params": {
+          "prizeConfig": "New PrizeConfig struct that will replace the previous PrizeConfig at the corresponding index"
+        }
+      },
+      "setManager(address)": {
+        "details": "Throws if called by any account other than the owner.",
+        "params": {
+          "_newManager": "New _manager address."
+        },
+        "returns": {
+          "_0": "Boolean to indicate if the operation was successful or not."
+        }
+      },
+      "transferOwnership(address)": {
+        "params": {
+          "_newOwner": "Address to transfer ownership to."
+        }
+      }
+    },
+    "stateVariables": {
+      "history": {
+        "details": "The history, with sequentially ordered ids, can be searched using binary search. The binary search will find index of a drawId (atOrBefore) using a specific drawId (at). When a new Draw ID is added to the history, a corresponding mapping of the ID is updated in the prizeConfigs mapping."
+      },
+      "prizeConfigs": {
+        "details": "drawId -> PrizeConfigThe prizeConfigs mapping is updated when a new Draw ID is added to the history."
+      }
+    },
+    "title": "PoolTogether V4 PrizeConfigHistory",
+    "version": 1
+  },
+  "userdoc": {
+    "events": {
+      "PrizeConfigPushed(uint32,(uint8,uint8,uint16,uint32,uint32,uint32,uint128,uint256,uint32[16]))": {
+        "notice": "Emit when a new PrizeConfig is added to history"
+      },
+      "PrizeConfigSet(uint32,(uint8,uint8,uint16,uint32,uint32,uint32,uint128,uint256,uint32[16]))": {
+        "notice": "Emit when existing PrizeConfig is updated in history"
+      }
+    },
+    "kind": "user",
+    "methods": {
+      "claimOwnership()": {
+        "notice": "Allows the `_pendingOwner` address to finalize the transfer."
+      },
+      "constructor": {
+        "notice": "PrizeConfigHistory constructor"
+      },
+      "count()": {
+        "notice": "Returns the number of PrizeConfig structs pushed"
+      },
+      "getNewestDrawId()": {
+        "notice": "Returns last Draw ID recorded in the history."
+      },
+      "getOldestDrawId()": {
+        "notice": "Returns first Draw ID used to initialize history."
+      },
+      "getPrizeConfig(uint32)": {
+        "notice": "Returns PrizeConfig struct for the passed Draw ID."
+      },
+      "getPrizeConfigAtIndex(uint256)": {
+        "notice": "Returns the PrizeConfig struct at the given index."
+      },
+      "manager()": {
+        "notice": "Gets current `_manager`."
+      },
+      "owner()": {
+        "notice": "Returns the address of the current owner."
+      },
+      "pendingOwner()": {
+        "notice": "Gets current `_pendingOwner`."
+      },
+      "popAndPush((uint8,uint8,uint16,uint32,uint32,uint32,uint128,uint256,uint32[16]))": {
+        "notice": "Push PrizeConfigHistory struct onto history array."
+      },
+      "push((uint8,uint8,uint16,uint32,uint32,uint32,uint128,uint256,uint32[16]))": {
+        "notice": "Push PrizeConfig struct onto history array."
+      },
+      "renounceOwnership()": {
+        "notice": "Renounce ownership of the contract."
+      },
+      "replace((uint8,uint8,uint16,uint32,uint32,uint32,uint128,uint256,uint32[16]))": {
+        "notice": "Replace PrizeConfig struct from history array."
+      },
+      "setManager(address)": {
+        "notice": "Set or change of manager."
+      },
+      "transferOwnership(address)": {
+        "notice": "Allows current owner to set the `_pendingOwner` address."
+      }
+    },
+    "notice": "Contract to store prize configurations",
+    "version": 1
+  },
+  "storageLayout": {
+    "storage": [
+      {
+        "astId": 4303,
+        "contract": "contracts/PrizeConfigHistory.sol:PrizeConfigHistory",
+        "label": "_owner",
+        "offset": 0,
+        "slot": "0",
+        "type": "t_address"
+      },
+      {
+        "astId": 4305,
+        "contract": "contracts/PrizeConfigHistory.sol:PrizeConfigHistory",
+        "label": "_pendingOwner",
+        "offset": 0,
+        "slot": "1",
+        "type": "t_address"
+      },
+      {
+        "astId": 4201,
+        "contract": "contracts/PrizeConfigHistory.sol:PrizeConfigHistory",
+        "label": "_manager",
+        "offset": 0,
+        "slot": "2",
+        "type": "t_address"
+      },
+      {
+        "astId": 12062,
+        "contract": "contracts/PrizeConfigHistory.sol:PrizeConfigHistory",
+        "label": "history",
+        "offset": 0,
+        "slot": "3",
+        "type": "t_array(t_uint32)dyn_storage"
+      },
+      {
+        "astId": 12068,
+        "contract": "contracts/PrizeConfigHistory.sol:PrizeConfigHistory",
+        "label": "prizeConfigs",
+        "offset": 0,
+        "slot": "4",
+        "type": "t_mapping(t_uint32,t_struct(PrizeConfig)16503_storage)"
+      }
+    ],
+    "types": {
+      "t_address": {
+        "encoding": "inplace",
+        "label": "address",
+        "numberOfBytes": "20"
+      },
+      "t_array(t_uint32)16_storage": {
+        "base": "t_uint32",
+        "encoding": "inplace",
+        "label": "uint32[16]",
+        "numberOfBytes": "64"
+      },
+      "t_array(t_uint32)dyn_storage": {
+        "base": "t_uint32",
+        "encoding": "dynamic_array",
+        "label": "uint32[]",
+        "numberOfBytes": "32"
+      },
+      "t_mapping(t_uint32,t_struct(PrizeConfig)16503_storage)": {
+        "encoding": "mapping",
+        "key": "t_uint32",
+        "label": "mapping(uint32 => struct IPrizeConfigHistory.PrizeConfig)",
+        "numberOfBytes": "32",
+        "value": "t_struct(PrizeConfig)16503_storage"
+      },
+      "t_struct(PrizeConfig)16503_storage": {
+        "encoding": "inplace",
+        "label": "struct IPrizeConfigHistory.PrizeConfig",
+        "members": [
+          {
+            "astId": 16484,
+            "contract": "contracts/PrizeConfigHistory.sol:PrizeConfigHistory",
+            "label": "bitRangeSize",
+            "offset": 0,
+            "slot": "0",
+            "type": "t_uint8"
+          },
+          {
+            "astId": 16486,
+            "contract": "contracts/PrizeConfigHistory.sol:PrizeConfigHistory",
+            "label": "matchCardinality",
+            "offset": 1,
+            "slot": "0",
+            "type": "t_uint8"
+          },
+          {
+            "astId": 16488,
+            "contract": "contracts/PrizeConfigHistory.sol:PrizeConfigHistory",
+            "label": "maxPicksPerUser",
+            "offset": 2,
+            "slot": "0",
+            "type": "t_uint16"
+          },
+          {
+            "astId": 16490,
+            "contract": "contracts/PrizeConfigHistory.sol:PrizeConfigHistory",
+            "label": "drawId",
+            "offset": 4,
+            "slot": "0",
+            "type": "t_uint32"
+          },
+          {
+            "astId": 16492,
+            "contract": "contracts/PrizeConfigHistory.sol:PrizeConfigHistory",
+            "label": "expiryDuration",
+            "offset": 8,
+            "slot": "0",
+            "type": "t_uint32"
+          },
+          {
+            "astId": 16494,
+            "contract": "contracts/PrizeConfigHistory.sol:PrizeConfigHistory",
+            "label": "endTimestampOffset",
+            "offset": 12,
+            "slot": "0",
+            "type": "t_uint32"
+          },
+          {
+            "astId": 16496,
+            "contract": "contracts/PrizeConfigHistory.sol:PrizeConfigHistory",
+            "label": "poolStakeCeiling",
+            "offset": 16,
+            "slot": "0",
+            "type": "t_uint128"
+          },
+          {
+            "astId": 16498,
+            "contract": "contracts/PrizeConfigHistory.sol:PrizeConfigHistory",
+            "label": "prize",
+            "offset": 0,
+            "slot": "1",
+            "type": "t_uint256"
+          },
+          {
+            "astId": 16502,
+            "contract": "contracts/PrizeConfigHistory.sol:PrizeConfigHistory",
+            "label": "tiers",
+            "offset": 0,
+            "slot": "2",
+            "type": "t_array(t_uint32)16_storage"
+          }
+        ],
+        "numberOfBytes": "128"
+      },
+      "t_uint128": {
+        "encoding": "inplace",
+        "label": "uint128",
+        "numberOfBytes": "16"
+      },
+      "t_uint16": {
+        "encoding": "inplace",
+        "label": "uint16",
+        "numberOfBytes": "2"
+      },
+      "t_uint256": {
+        "encoding": "inplace",
+        "label": "uint256",
+        "numberOfBytes": "32"
+      },
+      "t_uint32": {
+        "encoding": "inplace",
+        "label": "uint32",
+        "numberOfBytes": "4"
+      },
+      "t_uint8": {
+        "encoding": "inplace",
+        "label": "uint8",
+        "numberOfBytes": "1"
+      }
+    }
+  }
+}

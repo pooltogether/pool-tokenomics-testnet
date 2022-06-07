@@ -1,21 +1,48 @@
 const fs = require('fs');
 
-// const rinkebyDeployments = `${__dirname}/../deployments/rinkeby`;
-const mumbaiDeployments = `${__dirname}/../deployments/mumbai`;
+const rinkebyDeployments = `${__dirname}/../deployments/rinkeby`;
+// const mumbaiDeployments = `${__dirname}/../deployments/mumbai`;
 // const avalancheFujiDeployments = `${__dirname}/../deployments/fuji`;
 
-const networkDeploymentPaths = [mumbaiDeployments];
+const networkDeploymentPaths = [rinkebyDeployments];
 
-// TODO: HOW ARE WE GOING TO HANDLE VERSIONING.
-const CURRENT_VERSION = {
-  major: 2,
-  minor: 0,
-  patch: 0,
+/**
+ * Contract Naming Convention
+ * At a minimum includes a ContractType
+ *
+ * Any of the following are valid:
+ * {ContractType}
+ * {ContractType}-{Deployment}
+ * {ContractType}-{Version}
+ * {ContractType}-{Version}-{Deployment}
+ *
+ * ContractType: string
+ * Version: V[1-9]+ || V[1-9]+(_[1-9]+){1,2} - optional
+ * Deployment: number - optional
+ */
+
+const VERSION_REGEX = /(V[1-9])+(_[0-9]+){0,2}/g;
+
+const getVersion = (contractName) => {
+  const [major, minor, patch] = contractName.match(VERSION_REGEX)?.[0].slice(1).split('_') || [];
+  return {
+    major: major || 1,
+    minor: minor || 0,
+    patch: patch || 0,
+  };
+};
+
+const getContractType = (contractName) => {
+  return contractName.split('-')[0];
 };
 
 const contractList = {
   name: 'Testnet Linked Prize Pool',
-  version: CURRENT_VERSION,
+  version: {
+    major: 2,
+    minor: 0,
+    patch: 0,
+  },
   tags: {},
   contracts: [],
 };
@@ -24,8 +51,8 @@ const formatContract = (chainId, contractName, deploymentBlob) => {
   return {
     chainId,
     address: deploymentBlob.address,
-    version: CURRENT_VERSION,
-    type: contractName,
+    version: getVersion(contractName),
+    type: getContractType(contractName),
     abi: deploymentBlob.abi,
     tags: [],
     extensions: {},

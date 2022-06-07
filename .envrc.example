@@ -17,6 +17,9 @@ export SNOWTRACE_API_KEY=''
 export ALCHEMY_URL=''
 export FORK_ENABLED=''
 
+# Required to deploy on testnets
+export ALCHEMY_MUMBAI_RPC_URL=''
+
 # Used to hide deploy logs
 export HIDE_DEPLOY_LOG=''
 
