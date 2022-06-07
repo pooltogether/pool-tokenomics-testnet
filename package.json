@@ -1,8 +1,8 @@
 {
   "name": "@pooltogether/tokenomics-testnet",
-  "version": "1.4.0",
+  "version": "1.0.0-beta.1",
   "main": "index.js",
-  "repository": "git@github.com:pooltogether/v4-testnet.git",
+  "repository": "git@github.com:pooltogether/pool-tokenomics-testnet.git",
   "author": "Brendan Asselstine <mail.asselstine@gmail.com>",
   "license": "MIT",
   "scripts": {
@@ -24,7 +24,7 @@
     "yield": "hardhat run ./scripts/yield.js --network localhost",
     "generate-contract-list": "node ./scripts/generateContractList.js",
     "prepare-deploy": "yarn clean && yarn compile",
-    "prepack": "yarn generate",
+    "prepack": "yarn generate-contract-list",
     "reinstall": "rm -rf node_modules/ && yarn cache clean && yarn",
     "format": "prettier --config .prettierrc --write \"**/*.{ts,js}\"",
     "format:file": "prettier --config .prettierrc --write",
