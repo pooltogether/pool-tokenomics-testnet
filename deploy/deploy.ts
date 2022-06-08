@@ -121,6 +121,11 @@ export default async function deployToMumbai(hardhat: HardhatRuntimeEnvironment)
     skipIfAlreadyDeployed: true,
   });
 
+  const tokenFaucetResult = await deployAndLog('TokenFaucet', {
+    from: deployer,
+    skipIfAlreadyDeployed: true,
+  });
+
   const drawBufferResult = await deployAndLog('DrawBuffer', {
     from: deployer,
     args: [deployer, DRAW_BUFFER_CARDINALITY],
@@ -204,6 +209,8 @@ export default async function deployToMumbai(hardhat: HardhatRuntimeEnvironment)
   // Configure Contracts
   // ===================================================
   console.log(dim('Configuring contracts...'));
+
+  const tokenFaucet = await getContractAt('TokenFaucet', tokenFaucetResult.address);
 
   // Prize Pool 1 - USDC-style asset (6 decimals) with low APY (5%)
 
@@ -297,9 +304,9 @@ export default async function deployToMumbai(hardhat: HardhatRuntimeEnvironment)
 
   const pool = await getContract('Pool');
 
-  if (poolResult.newlyDeployed) {
+  if ((await pool.balanceOf(tokenFaucet.address)).eq('0')) {
     console.log(dim('Minting 10M POOL to deployer...'));
-    await pool.mint(deployer, toWei('10000000')); // 10M
+    await pool.mint(tokenFaucet.address, toWei('10000000')); // 10M
   }
 
   await setManager('DrawBuffer', null, drawBeaconResult.address);
