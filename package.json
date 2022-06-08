@@ -39,7 +39,7 @@
     "@pooltogether/draw-calculator-js": "1.0.3-beta.4",
     "@pooltogether/owner-manager-contracts": "1.1.0",
     "@pooltogether/pooltogether-rng-contracts": "1.5.1",
-    "@pooltogether/v4-core": "1.4.0-beta.3",
+    "@pooltogether/v4-core": "1.4.0-beta.4",
     "@pooltogether/v4-periphery": "1.2.3",
     "@pooltogether/v4-timelocks": "1.1.0",
     "@pooltogether/v4-twab-delegator": "1.0.0",
