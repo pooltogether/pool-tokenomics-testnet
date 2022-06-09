@@ -13,11 +13,11 @@ const networkDeploymentPaths = [rinkebyDeployments];
  * Any of the following are valid:
  * {ContractType}
  * {ContractType}-{Deployment}
- * {ContractType}-{Version}
- * {ContractType}-{Version}-{Deployment}
+ * {ContractType}{Version}
+ * {ContractType}{Version}-{Deployment}
  *
  * ContractType: string
- * Version: V[1-9]+ || V[1-9]+(_[1-9]+){1,2} - optional
+ * Version: /(V[1-9])+(_[0-9]+){0,2}/g; - optional
  * Deployment: number - optional
  */
 
@@ -33,7 +33,7 @@ const getVersion = (contractName) => {
 };
 
 const getContractType = (contractName) => {
-  return contractName.split('-')[0];
+  return contractName.split('-')[0].split(VERSION_REGEX)[0];
 };
 
 const contractList = {
