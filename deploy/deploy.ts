@@ -220,7 +220,9 @@ export default async function deployToMumbai(hardhat: HardhatRuntimeEnvironment)
     prizePoolLiquidatorResult.address,
   );
 
-  await prizePoolLiquidator.setListener(gaugeRewardResult.address);
+  if ((await prizePoolLiquidator.getListener()) === AddressZero) {
+    await prizePoolLiquidator.setListener(gaugeRewardResult.address);
+  }
 
   const tokenFaucet = await getContractAt('TokenFaucet', tokenFaucetResult.address);
 
@@ -264,9 +266,15 @@ export default async function deployToMumbai(hardhat: HardhatRuntimeEnvironment)
     // In an hour we accrue: balance * (APY in seconds) * one hour in seconds = 40000000 x (0.05/31557600) x 3600 = 228 tokens per hour
     // Initial virtual LP reserve = accrued yield amount / liquidity fraction = 228 / 0.02 = 11400 tokens
     // We assume an exchange rate of 1:1 when swapping yield tokens for prize tokens the first time, so reserveA == reserveB == 11400
-    const prizePool1reserve = toWei(
-      String((40000000 * (0.05 / ONE_YEAR_IN_SECONDS) * ONE_HOUR_IN_SECONDS) / LIQUIDITY_FRACTION),
+    const prizePool1reserve = String(
+      (
+        (40000000 * (0.05 / ONE_YEAR_IN_SECONDS) * ONE_HOUR_IN_SECONDS) /
+        LIQUIDITY_FRACTION
+      ).toFixed(0),
     );
+
+    const prizePool1reserveA = toWei(prizePool1reserve);
+    const prizePool1reserveB = parseUnits(prizePool1reserve, USDC_TOKEN_DECIMALS);
 
     await prizePoolLiquidator.setPrizePool(
       prizePool1.address,
@@ -274,8 +282,8 @@ export default async function deployToMumbai(hardhat: HardhatRuntimeEnvironment)
       poolResult.address,
       SWAP_MULTIPLIER,
       PARSED_LIQUIDITY_FRACTION,
-      prizePool1reserve,
-      prizePool1reserve,
+      prizePool1reserveA,
+      prizePool1reserveB,
     );
   }
 
@@ -367,9 +375,15 @@ export default async function deployToMumbai(hardhat: HardhatRuntimeEnvironment)
     (await prizePoolLiquidator.getLiquidationConfig(prizePool3.address)).want === AddressZero &&
     (await prizePoolLiquidator.getLiquidationState(prizePool3.address)).reserveA.eq('0')
   ) {
-    const prizePool3reserve = toWei(
-      String((40000000 * (0.15 / ONE_YEAR_IN_SECONDS) * ONE_HOUR_IN_SECONDS) / LIQUIDITY_FRACTION),
+    const prizePool3reserve = String(
+      (
+        (40000000 * (0.15 / ONE_YEAR_IN_SECONDS) * ONE_HOUR_IN_SECONDS) /
+        LIQUIDITY_FRACTION
+      ).toFixed(0),
     );
+
+    const prizePool3reserveA = toWei(prizePool3reserve);
+    const prizePool3reserveB = parseUnits(prizePool3reserve, USDC_TOKEN_DECIMALS);
 
     await prizePoolLiquidator.setPrizePool(
       prizePool3.address,
@@ -377,8 +391,8 @@ export default async function deployToMumbai(hardhat: HardhatRuntimeEnvironment)
       poolResult.address,
       SWAP_MULTIPLIER,
       PARSED_LIQUIDITY_FRACTION,
-      prizePool3reserve,
-      prizePool3reserve,
+      prizePool3reserveA,
+      prizePool3reserveB,
     );
   }
 
