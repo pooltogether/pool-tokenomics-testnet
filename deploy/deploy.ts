@@ -141,8 +141,8 @@ export default async function deployToMumbai(hardhat: HardhatRuntimeEnvironment)
     skipIfAlreadyDeployed: true,
   });
 
-  // New Draw Every 10 minutes
-  const calculatedBeaconPeriodSeconds = 600;
+  // New Draw Every 30 minutes
+  const calculatedBeaconPeriodSeconds = 1800;
 
   const drawBeaconResult = await deployAndLog('DrawBeacon', {
     from: deployer,
