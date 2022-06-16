@@ -5,7 +5,11 @@ import {
   RNG_TIMEOUT_SECONDS,
   POOL_USDC_MARKET_RATE,
   SALES_RATE_PER_SECOND,
+  SWAP_MULTIPLIER,
+  LIQUIDITY_FRACTION,
+  PARSED_LIQUIDITY_FRACTION,
   ONE_YEAR_IN_SECONDS,
+  ONE_HOUR_IN_SECONDS,
   DAI_TOKEN_DECIMALS,
   USDC_TOKEN_DECIMALS,
 } from '../src/constants';
@@ -117,7 +121,7 @@ export default async function deployToMumbai(hardhat: HardhatRuntimeEnvironment)
   const poolResult = await deployAndLog('Pool', {
     from: deployer,
     contract: erc20MintableContractPath,
-    args: ['POOL Token', 'POOL'],
+    args: ['POOL Token', 'POOL', 18, deployer],
     skipIfAlreadyDeployed: true,
   });
 
@@ -137,8 +141,8 @@ export default async function deployToMumbai(hardhat: HardhatRuntimeEnvironment)
     skipIfAlreadyDeployed: true,
   });
 
-  // New Draw Every 10 minutes
-  const calculatedBeaconPeriodSeconds = 600;
+  // New Draw Every 30 minutes
+  const calculatedBeaconPeriodSeconds = 1800;
 
   const drawBeaconResult = await deployAndLog('DrawBeacon', {
     from: deployer,
@@ -191,6 +195,7 @@ export default async function deployToMumbai(hardhat: HardhatRuntimeEnvironment)
 
   const prizePoolLiquidatorResult = await deployAndLog('PrizePoolLiquidator', {
     from: deployer,
+    args: [deployer],
     skipIfAlreadyDeployed: true,
   });
 
@@ -209,6 +214,15 @@ export default async function deployToMumbai(hardhat: HardhatRuntimeEnvironment)
   // Configure Contracts
   // ===================================================
   console.log(dim('Configuring contracts...'));
+
+  const prizePoolLiquidator = await getContractAt(
+    'PrizePoolLiquidator',
+    prizePoolLiquidatorResult.address,
+  );
+
+  if ((await prizePoolLiquidator.getListener()) === AddressZero) {
+    await prizePoolLiquidator.setListener(gaugeRewardResult.address);
+  }
 
   const tokenFaucet = await getContractAt('TokenFaucet', tokenFaucetResult.address);
 
@@ -232,14 +246,45 @@ export default async function deployToMumbai(hardhat: HardhatRuntimeEnvironment)
     await mockYieldSource1.depositToken(),
   );
 
+  await ptUSDC5.grantRole(ptUSDC5.MINTER_ROLE(), mockYieldSource1Result.address);
+
   if ((await mockYieldSource1.ratePerSecond()).eq('0')) {
     console.log(dim('Setting APY of first PoolTogether USDC Yield Source to 5%...'));
     await mockYieldSource1.setRatePerSecond(toWei('0.05').div(ONE_YEAR_IN_SECONDS)); // 5% APY
   }
 
-  if ((await ptUSDC5.balanceOf(deployer)).eq('0')) {
-    console.log(dim('Minting 40M PTUSDC5 to deployer...'));
-    await ptUSDC5.mint(deployer, parseUnits('40000000', USDC_TOKEN_DECIMALS)); // 40M
+  if ((await ptUSDC5.balanceOf(tokenFaucet.address)).eq('0')) {
+    console.log(dim('Minting 40M PTUSDC5 to tokenFaucet...'));
+    await ptUSDC5.mint(tokenFaucet.address, parseUnits('40000000', USDC_TOKEN_DECIMALS)); // 40M
+  }
+
+  if (
+    (await prizePoolLiquidator.getLiquidationConfig(prizePool1.address)).want === AddressZero &&
+    (await prizePoolLiquidator.getLiquidationState(prizePool1.address)).reserveA.eq('0')
+  ) {
+    // We expect the yield to be arbed every hour, so we need to calculate the amount of accrued yield for an hour.
+    // In an hour we accrue: balance * (APY in seconds) * one hour in seconds = 40000000 x (0.05/31557600) x 3600 = 228 tokens per hour
+    // Initial virtual LP reserve = accrued yield amount / liquidity fraction = 228 / 0.02 = 11400 tokens
+    // We assume an exchange rate of 1:1 when swapping yield tokens for prize tokens the first time, so reserveA == reserveB == 11400
+    const prizePool1reserve = String(
+      (
+        (40000000 * (0.05 / ONE_YEAR_IN_SECONDS) * ONE_HOUR_IN_SECONDS) /
+        LIQUIDITY_FRACTION
+      ).toFixed(0),
+    );
+
+    const prizePool1reserveA = toWei(prizePool1reserve);
+    const prizePool1reserveB = parseUnits(prizePool1reserve, USDC_TOKEN_DECIMALS);
+
+    await prizePoolLiquidator.setPrizePool(
+      prizePool1.address,
+      tokenVaultResult.address,
+      poolResult.address,
+      SWAP_MULTIPLIER,
+      PARSED_LIQUIDITY_FRACTION,
+      prizePool1reserveA,
+      prizePool1reserveB,
+    );
   }
 
   // Prize Pool 2 - DAI-style asset (18 decimals) with medium APY (10%)
@@ -262,14 +307,36 @@ export default async function deployToMumbai(hardhat: HardhatRuntimeEnvironment)
     await mockYieldSource2.depositToken(),
   );
 
+  await ptDAI10.grantRole(ptDAI10.MINTER_ROLE(), mockYieldSource2Result.address);
+
   if ((await mockYieldSource2.ratePerSecond()).eq('0')) {
     console.log(dim('Setting APY of PoolTogether DAI Yield Source to 10%...'));
     await mockYieldSource2.setRatePerSecond(toWei('0.1').div(ONE_YEAR_IN_SECONDS)); // 10% APY
   }
 
-  if ((await ptDAI10.balanceOf(deployer)).eq('0')) {
-    console.log(dim('Minting 40M PTDAI10 to deployer...'));
-    await ptDAI10.mint(deployer, parseUnits('40000000', DAI_TOKEN_DECIMALS)); // 40M
+  if ((await ptDAI10.balanceOf(tokenFaucet.address)).eq('0')) {
+    console.log(dim('Minting 40M PTDAI10 to tokenFaucet...'));
+    await ptDAI10.mint(tokenFaucet.address, parseUnits('40000000', DAI_TOKEN_DECIMALS)); // 40M
+  }
+
+  if (
+    (await prizePoolLiquidator.getLiquidationConfig(prizePool2.address)).want === AddressZero &&
+    (await prizePoolLiquidator.getLiquidationState(prizePool2.address)).reserveA.eq('0')
+  ) {
+    const prizePool2reserve = parseUnits(
+      String((40000000 * (0.1 / ONE_YEAR_IN_SECONDS) * ONE_HOUR_IN_SECONDS) / LIQUIDITY_FRACTION),
+      DAI_TOKEN_DECIMALS,
+    );
+
+    await prizePoolLiquidator.setPrizePool(
+      prizePool2.address,
+      tokenVaultResult.address,
+      poolResult.address,
+      SWAP_MULTIPLIER,
+      PARSED_LIQUIDITY_FRACTION,
+      prizePool2reserve,
+      prizePool2reserve,
+    );
   }
 
   // Prize Pool 3 - USDC-style asset (6 decimals) with high APY (15%)
@@ -292,20 +359,47 @@ export default async function deployToMumbai(hardhat: HardhatRuntimeEnvironment)
     await mockYieldSource3.depositToken(),
   );
 
+  await ptUSDC15.grantRole(ptUSDC15.MINTER_ROLE(), mockYieldSource3Result.address);
+
   if ((await mockYieldSource3.ratePerSecond()).eq('0')) {
     console.log(dim('Setting APY of second PoolTogether USDC Yield Source to 15%...'));
     await mockYieldSource3.setRatePerSecond(toWei('0.15').div(ONE_YEAR_IN_SECONDS)); // 15% APY
   }
 
-  if ((await ptUSDC15.balanceOf(deployer)).eq('0')) {
-    console.log(dim('Minting 40M PTUSDC15 to deployer...'));
-    await ptUSDC15.mint(deployer, parseUnits('40000000', USDC_TOKEN_DECIMALS)); // 40M
+  if ((await ptUSDC15.balanceOf(tokenFaucet.address)).eq('0')) {
+    console.log(dim('Minting 40M PTUSDC15 to tokenFaucet...'));
+    await ptUSDC15.mint(tokenFaucet.address, parseUnits('40000000', USDC_TOKEN_DECIMALS)); // 40M
+  }
+
+  if (
+    (await prizePoolLiquidator.getLiquidationConfig(prizePool3.address)).want === AddressZero &&
+    (await prizePoolLiquidator.getLiquidationState(prizePool3.address)).reserveA.eq('0')
+  ) {
+    const prizePool3reserve = String(
+      (
+        (40000000 * (0.15 / ONE_YEAR_IN_SECONDS) * ONE_HOUR_IN_SECONDS) /
+        LIQUIDITY_FRACTION
+      ).toFixed(0),
+    );
+
+    const prizePool3reserveA = toWei(prizePool3reserve);
+    const prizePool3reserveB = parseUnits(prizePool3reserve, USDC_TOKEN_DECIMALS);
+
+    await prizePoolLiquidator.setPrizePool(
+      prizePool3.address,
+      tokenVaultResult.address,
+      poolResult.address,
+      SWAP_MULTIPLIER,
+      PARSED_LIQUIDITY_FRACTION,
+      prizePool3reserveA,
+      prizePool3reserveB,
+    );
   }
 
   const pool = await getContract('Pool');
 
   if ((await pool.balanceOf(tokenFaucet.address)).eq('0')) {
-    console.log(dim('Minting 10M POOL to deployer...'));
+    console.log(dim('Minting 10M POOL to tokenFaucet...'));
     await pool.mint(tokenFaucet.address, toWei('10000000')); // 10M
   }
 
