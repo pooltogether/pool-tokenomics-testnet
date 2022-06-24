@@ -37,7 +37,6 @@ export async function pushDraw1() {
         0,
       ],
       expiryDuration: EXPIRY_DURATION,
-      dpr: parseUnits('0.1', '9'),
     });
     await pushTx.wait(1);
     green(`Done!`);
