@@ -434,12 +434,12 @@ export default async function deployToMumbai(hardhat: HardhatRuntimeEnvironment)
   if ((await prizeConfigHistory.count()) == 0) {
     console.log(yellow(`Pushing first prize tier on....`));
 
-    const pushTx = await prizeConfigHistory.push({
+    const pushTx = await prizeConfigHistory.replace({
       bitRangeSize: 2,
       matchCardinality: 12,
       maxPicksPerUser: 2,
       drawId: 1,
-      expiryDuration: calculatedBeaconPeriodSeconds * 4, // expires in four periods
+      expiryDuration: 108000, // calculatedBeaconPeriodSeconds * 60
       endTimestampOffset: 0,
       poolStakeCeiling: await pool.totalSupply(),
       prize: ethers.utils.parseEther('10.0'),

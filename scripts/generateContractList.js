@@ -27,7 +27,7 @@ const getVersion = (contractName) => {
   const [major, minor, patch] = contractName.match(VERSION_REGEX)?.[0].slice(1).split('_') || [];
 
   return {
-    major: Number(major) || 1,
+    major: Number(major) || 2,
     minor: Number(minor) || 0,
     patch: Number(patch) || 0,
   };
